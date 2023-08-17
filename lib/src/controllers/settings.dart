@@ -8,15 +8,16 @@ class SettingsController extends GetxController {
 
   // Make ThemeMode a private variable so it is not updated directly without
   // also persisting the changes with the SettingsService.
-  late ThemeMode _themeMode;
+  late ThemeMode themeMode;
+  bool? status;
 
   // Allow Widgets to read the user's preferred ThemeMode.
-  ThemeMode get themeMode => _themeMode;
+  ThemeMode get themeMode1 => themeMode;
 
   @override
   Future<void> onInit() async {
-    _themeMode = _settingsService.getThemeMode;
-    print(_themeMode);
+    themeMode = _settingsService.getThemeMode;
+    print(themeMode);
     super.onInit();
   }
 
@@ -31,7 +32,9 @@ class SettingsController extends GetxController {
   /// settings from the service.
   Future<void> loadSettings() async {
     await _settingsService.loadSettings();
-    _themeMode = _settingsService.getThemeMode;
+    themeMode = _settingsService.getThemeMode;
+
+    print("this is statsu+ $status");
   }
 
   /// Update and persist the ThemeMode based on the user's selection.
@@ -39,5 +42,26 @@ class SettingsController extends GetxController {
     // Persist the changes to a local database or the internet using the
     // SettingService.
     await _settingsService.updateThemeMode(newThemeMode);
+    print("###########@@@@@@${newThemeMode}");
   }
+
+  Color lightPrimaryColor = Color.fromARGB(255, 255, 255, 255);
+  Color darkPrimaryColor = Color.fromARGB(255, 0, 0, 0);
+
+  static ThemeData lightTheme = ThemeData(
+      primaryColor: ThemeData.light().scaffoldBackgroundColor,
+      colorScheme: ColorScheme.light().copyWith(
+        primary: settingsController.lightPrimaryColor,
+      ));
+
+  static ThemeData darkTheme = ThemeData(
+      primaryColor: ThemeData.dark().scaffoldBackgroundColor,
+      inputDecorationTheme: InputDecorationTheme(),
+      bottomNavigationBarTheme:
+          BottomNavigationBarThemeData(backgroundColor: Colors.amber ),
+      colorScheme: ColorScheme.dark().copyWith(
+        primary: settingsController.darkPrimaryColor,
+      ));
 }
+
+SettingsController settingsController = SettingsController();

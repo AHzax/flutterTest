@@ -16,8 +16,8 @@ import '../../utils/config/uidata.dart';
 
   List<FileSystemEntity> docList;
   void Function(int i) listTap;
-  String Function(String? path) getFileName;
-  String Function(String? path) getMimeType;
+  String Function(String path) getFileName;
+  String Function(String path) getMimeType;
 
   
   CustomDoclistWidget({
@@ -37,7 +37,7 @@ import '../../utils/config/uidata.dart';
         itemBuilder: (BuildContext context, int i) {
           // return SizedBox();
           // FileSystemEntity? file = object.data;
-          FileSystemEntity? file = docList[i];
+          FileSystemEntity file = docList[i];
           return Container(
             color: Colors.grey[300],
             child: ListTile(

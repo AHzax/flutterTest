@@ -1,5 +1,12 @@
 // flutter imports
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+import 'dart:io';
+
+import 'package:docapp/src/controllers/settings.dart';
+import 'package:docapp/src/services/settings.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // package imports
 // import 'package:get/get.dart';
@@ -11,8 +18,10 @@ import 'package:flutter/material.dart';
 // lib imports
 import '../../utils/config/uidata.dart';
 // import './buttons/icon_button.dart';
+import '../../utils/routes/app_routes.dart';
 import '../widgets/drawer/common_drawer.dart';
 import './custom_float.dart';
+import 'buttons/icon_button.dart';
 
 class CommonScaffold extends StatelessWidget {
   final appTitle;
@@ -23,7 +32,7 @@ class CommonScaffold extends StatelessWidget {
   final Color? backGroundColor;
   final actionFirstIcon;
   final actionSecondIcon;
-  final scaffoldKey;
+
   final showBottomNav;
   final floatingIcon;
   final centerDocked;
@@ -51,11 +60,11 @@ class CommonScaffold extends StatelessWidget {
     this.backGroundColor,
     this.actionFirstIcon = false,
     this.actionSecondIcon = false,
-    this.scaffoldKey,
+    // this.scaffoldKey,
     this.showBottomNav = false,
     this.centerDocked = true,
     this.floatingIcon = Icons.add,
-    this.elevation = 4.0,
+    this.elevation = 0.0,
     this.enableHeader = false,
     this.headerName = false,
     this.headerTitle = '',
@@ -73,101 +82,108 @@ class CommonScaffold extends StatelessWidget {
   });
 
   Widget myBottomBar() => BottomAppBar(
+        // color:
+        // Colors.white,
+
         clipBehavior: Clip.antiAlias,
         child: Container(
           height: 59,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              // ReusableIconButton(
-              //   icon: Icon(
-              //     Icons.home_outlined,
-              //     color: (Get.currentRoute == Routes.homeRoute)
-              //         ? UIDataColors.commonColor
-              //         : Colors.grey,
-              //     size: 24,
-              //   ),
-              //   onPressed: () {
-              //     if (Get.currentRoute != Routes.homeRoute) {
-              //       Get.offAllNamed(Routes.homeRoute);
-              //     }
-              //   },
-              // ),
-              // ReusableIconButton(
-              //     icon: Icon(
-              //       Icons.dashboard,
-              //       color: Get.currentRoute == Routes.dashboardRoute
-              //           ? UIDataColors.commonColor
-              //           : Colors.grey,
-              //       size: 24,
-              //     ),
-              //     onPressed: () {
-              //       if (Get.currentRoute != Routes.dashboardRoute) {
-              //         Get.offAllNamed(Routes.dashboardRoute);
-              //       }
-              //     }),
-              // Stack(
-              //   children: [
-              //     ReusableIconButton(
-              //         icon: Icon(
-              //           Icons.notifications_none,
-              //           color: Get.currentRoute == Routes.notificationsRoute
-              //               ? UIDataColors.commonColor
-              //               : Colors.grey,
-              //           size: 24,
-              //         ),
-              //         onPressed: () {
-              //           if (Get.currentRoute != Routes.notificationsRoute) {
-              //             Get.offAllNamed(Routes.notificationsRoute);
-              //           }
-              //         }),
-              //     Obx(
-              //       () => Positioned(
-              //         right: 0,
-              //         child: notificationService.notificationCounter.value > 0
-              //             ? Container(
-              //                 height: 25.0,
-              //                 width: 25.0,
-              //                 padding: EdgeInsets.all(5.0),
-              //                 decoration: BoxDecoration(
-              //                   borderRadius: BorderRadius.all(
-              //                     Radius.circular(30.0),
-              //                   ),
-              //                   color: UIDataColors.commonColor,
-              //                   // color: Colors.white,
-              //                 ),
-              //                 child: Center(
-              //                   child: Text(
-              //                     '${notificationService.notificationCounter.value}',
-              //                     // channelSubscription[i].unread.toString(),
-              //                     style: TextStyle(
-              //                       fontWeight: FontWeight.w400,
-              //                       fontSize: 13,
-              //                       fontFamily: 'Roboto',
-              //                       color: Colors.white,
-              //                     ),
-              //                   ),
-              //                 ),
-              //               )
-              //             : SizedBox(),
-              //       ),
-              //     )
-              //   ],
-              // ),
-              // ReusableIconButton(
-              //   icon: Icon(
-              //     Icons.settings_outlined,
-              //     color: Get.currentRoute == Routes.settingsRoute
-              //         ? UIDataColors.commonColor
-              //         : Colors.grey,
-              //     size: 24,
-              //   ),
-              //   onPressed: () {
-              //     if (Get.currentRoute != Routes.settingsRoute) {
-              //       Get.offAllNamed(Routes.settingsRoute);
-              //     }
-              //   },
-              // ),
+              ReusableIconButton(
+                icon: Icon(
+                  Icons.home_outlined,
+                  color: (Get.currentRoute == Routes.homeRoute)
+                      ? UIDataColors.commonColor
+                      : Colors.grey,
+                  size: 24,
+                ),
+                onPressed: () {
+                  if (Get.currentRoute != Routes.homeRoute) {
+                    Get.offAllNamed(Routes.homeRoute);
+                  }
+                },
+              ),
+              ReusableIconButton(
+                  icon: Icon(
+                    Icons.dashboard,
+                    color: Get.currentRoute == Routes.PdfViewRoute
+                        ? UIDataColors.commonColor
+                        : Colors.grey,
+                    size: 24,
+                  ),
+                  onPressed: () {
+                    if (Get.currentRoute != Routes.PdfViewRoute) {
+                      Get.offAllNamed(Routes.PdfViewRoute);
+                    }
+                  }),
+              Stack(
+                children: [
+                  ReusableIconButton(
+                      icon: Icon(
+                        Icons.notifications_none,
+                        // color: Get.currentRoute == Routes.notificationsRoute
+                        // ? UIDataColors.commonColor
+                        // : Colors.grey,
+                        size: 24,
+                      ),
+                      onPressed: () {
+                        // if (Get.currentRoute != Routes.notificationsRoute) {
+                        //   Get.offAllNamed(Routes.notificationsRoute);
+                        // }
+                      }),
+                  // Obx(
+                  //   () =>
+                  Positioned(
+                      right: 0,
+                      child:
+                          // notificationService.notificationCounter.value > 0
+                          //     ?
+                          Container(
+                        height: 25.0,
+                        width: 25.0,
+                        padding: EdgeInsets.all(5.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30.0),
+                          ),
+                          color: UIDataColors.commonColor,
+                          // color: Colors.white,
+                        ),
+                        child: Center(
+                          child: Text(
+                            // '${notificationService.notificationCounter.value}',
+                            "9+",
+                            // channelSubscription[i].unread.toString(),
+                            style: TextStyle(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                              fontFamily: 'Roboto',
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      )
+                      // : SizedBox(),
+                      ),
+                  // )
+                ],
+              ),
+              ReusableIconButton(
+                icon: Icon(
+                  Icons.settings_outlined,
+                  color: Get.currentRoute == Routes.settingsRoute
+                      ? UIDataColors.commonColor
+                      : Colors.grey,
+                  size: 24,
+                ),
+                onPressed: () {
+                  if (Get.currentRoute != Routes.settingsRoute) {
+                    Get.offAllNamed(Routes.settingsRoute);
+                  }
+                },
+              ),
             ],
           ),
         ),
@@ -178,35 +194,83 @@ class CommonScaffold extends StatelessWidget {
     // int topFlex = 4;
     // int bottomFlex = 11;
     // int totalFlex = topFlex + bottomFlex;
+    // print(scaffoldKey.currentState == null &&
+    //     (scaffoldKey.currentState?.hasDrawer ?? false));
+    // print((scaffoldKey.currentState?.hasDrawer));
+    // print(scaffoldKey.currentState == null);
+    // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      key: scaffoldKey,
+      // key: scaffoldKey,
       backgroundColor: Colors.white,
       appBar: showAppBar
           ? AppBar(
+              iconTheme: IconThemeData(color: UIDataColors.blackColor),
               elevation: elevation,
-              backgroundColor: UIDataColors.commonColor,
-              title: Text(appTitle),
+              //   +
+              backgroundColor: UIDataColors.whiteColor,
+              title: Center(
+                child: Text(
+                  appTitle,
+                  style: TextStyle(
+                    color: UIDataColors.blackColor,
+                    fontFamily: 'Inter',
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
               actions: <Widget>[
-                appBarSearchShow != false ? appBarSearch : SizedBox(),
-                actionFirstIcon != false
-                    ? IconButton(
-                        onPressed: actionFirstIconCallBack,
-                        icon: Icon(
-                          actionFirstIcon,
-                          color: Colors.white,
+                GestureDetector(
+                    onTap: () async {
+                      // _.selectImage();
+                    },
+                    child: Container(
+                      width: 30,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        // color: Colors.black,
+                        shape: BoxShape.circle,
+
+                        image: DecorationImage(
+                          image:
+                              // _.profileImage.value.isEmpty
+                              AssetImage('assets/images/user.jpg'),
+                          // as ImageProvider
+                          // : FileImage(
+                          //     File(
+                          //       _.profileImage.value,
+                          //     ),
+                          //   ),
+                          fit: BoxFit.contain,
                         ),
-                      )
-                    : SizedBox(),
-                actionSecondIcon != false
-                    ? IconButton(
-                        onPressed: actionSecondIconCallBack,
-                        icon: Icon(
-                          actionSecondIcon,
-                          color: Colors.white,
-                        ),
-                      )
-                    : SizedBox(),
+                      ),
+                      // child: Icon(
+                      //   Icons.person,
+                      //   // color: Colors.white,
+                      // ),
+                    )).marginOnly(right: 20),
+
+                // Icon(Icons.person).marginOnly(right: 10),
+                // appBarSearchShow != false ? appBarSearch : SizedBox(),
+                // actionFirstIcon != false
+                //     ? IconButton(
+                //         onPressed: actionFirstIconCallBack,
+                //         icon: Icon(
+                //           actionFirstIcon,
+                //           color: Colors.black,
+                //         ),
+                //       )
+                //     : SizedBox(),
+                // actionSecondIcon != false
+                //     ? IconButton(
+                //         onPressed: actionSecondIconCallBack,
+                //         icon: Icon(
+                //           actionSecondIcon,
+                //           color: Colors.black,
+                //         ),
+                //       )
+                SizedBox(),
               ],
             )
           : null,
@@ -221,13 +285,13 @@ class CommonScaffold extends StatelessWidget {
                 textScaleFactor: 0.85,
               ),
               child: Container(
-                  decoration: BoxDecoration(
-                    color: backGroundColor ?? Colors.white,
-                  ),
-                  width: (MediaQuery.of(context).size.width.ceil()).toDouble(),
-                  height:
-                      (MediaQuery.of(context).size.height.ceil()).toDouble(),
-                  child: bodyData),
+                decoration: BoxDecoration(
+                  color: backGroundColor ?? UIDataColors.whiteColor,
+                ),
+                width: (MediaQuery.of(context).size.width.ceil()).toDouble(),
+                height: (MediaQuery.of(context).size.height.ceil()).toDouble(),
+                child: bodyData,
+              ),
             ),
           );
         },

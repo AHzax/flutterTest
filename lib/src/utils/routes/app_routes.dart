@@ -7,11 +7,15 @@ abstract class Routes {
 
   //error
   static const errorRoute = '/error';
-
+  //projects
+  static const ListsRoute = '/lists';
   // login
   static const loginRoute = '/login';
 
-  //signup
+  //createProject
+  static const CreateProjectRoute = '/create-project';
+
+  //signup 
   static const signUpRoute = '/signUp';
   //sign
   static const signatureRoute = '/signature-screen';

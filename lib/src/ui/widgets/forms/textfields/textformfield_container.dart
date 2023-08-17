@@ -6,6 +6,7 @@ import '../../../../utils/config/uidata.dart';
 class TextFormFieldContainer extends StatelessWidget {
   TextFormFieldContainer({
     required this.hintText,
+    this.labelText,
     required this.controllerText,
     this.readOnly = false,
     this.onTap,
@@ -23,6 +24,8 @@ class TextFormFieldContainer extends StatelessWidget {
 
   final TextEditingController controllerText;
   final String hintText;
+  final String? labelText;
+
   final bool readOnly;
   final Function()? onTap;
   final bool suffixicon;
@@ -38,6 +41,7 @@ class TextFormFieldContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // padding: EdgeInsets.only(bottom: 20),
       child: TextFormField(
         onTap: onTap,
         minLines: minLines,
@@ -48,6 +52,15 @@ class TextFormFieldContainer extends StatelessWidget {
         inputFormatters: formatter,
         decoration: InputDecoration(
           hintText: hintText,
+          contentPadding: EdgeInsets.only(bottom: 20),
+          labelText: labelText,
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          labelStyle: TextStyle(
+            fontSize: 20,
+            fontFamily: "inter",
+            color: UIDataColors.commonColor,
+            fontWeight: FontWeight.w500,
+          ),
           suffixIcon: clearSuffixicon && suffixicon && clearAction != null
               ? (controllerText.text != ''
                   ? InkWell(
@@ -71,13 +84,17 @@ class TextFormFieldContainer extends StatelessWidget {
                       color: UIDataColors.commonColor,
                     )
                   : null),
-          hintStyle: UIDataTextStyles.kReminderHintStyle,
-          enabledBorder: showBorder ? UnderlineInputBorder(
-            borderSide: BorderSide(color: UIDataColors.commonColor),
-          ) : null,
-          focusedBorder: showBorder ? UnderlineInputBorder(
-            borderSide: BorderSide(color: UIDataColors.commonColor),
-          ) : null,
+          hintStyle: UIDataTextStyles.kViewAllStyle,
+          enabledBorder: showBorder
+              ? UnderlineInputBorder(
+                  borderSide: BorderSide(color: UIDataColors.commonColor),
+                )
+              : null,
+          focusedBorder: showBorder
+              ? UnderlineInputBorder(
+                  borderSide: BorderSide(color: UIDataColors.commonColor),
+                )
+              : null,
         ),
         controller: controllerText,
       ),

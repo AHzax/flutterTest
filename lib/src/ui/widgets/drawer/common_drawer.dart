@@ -1,9 +1,13 @@
 import 'package:docapp/src/services/auth.dart';
+import 'package:docapp/src/utils/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+
 // import '../about_tile.dart';
 
 class CommonDrawer extends StatelessWidget {
+  // final ThemeClass c = Get.find<ThemeClass>();
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -35,6 +39,57 @@ class CommonDrawer extends StatelessWidget {
               AuthService auth = Get.find<AuthService>();
               auth.logout();
             },
+          ),
+          Divider(),
+          ListTile(
+            title: Text(
+              "User",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
+            ),
+            leading: Icon(
+              Icons.person,
+              color: Color.fromARGB(255, 93, 93, 93),
+            ),
+            // onTap: () {
+            //   c.changeThemeMode(ThemeMode.light);
+            //   c.update();
+            // },
+            // onTap: () {
+            //   c.changeTheme();
+            // },
+          ),
+          ListTile(
+            title: Text(
+              "Lawyer",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
+            ),
+            leading: Icon(
+              Icons.diversity_3_sharp,
+              color: Color.fromARGB(255, 93, 93, 93),
+            ),
+            // onTap: () {
+            //   c.changeThemeMode(ThemeMode.dark);
+            //   c.update();
+            // },
+            // onTap: () {
+            //   c.changeTheme();
+            // },
+          ),
+          ListTile(
+            title: Text(
+              "Setting",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
+            ),
+            leading: Icon(
+              Icons.settings,
+              color: Color.fromARGB(255, 93, 93, 93),
+            ),
+            onTap: () {
+              Get.toNamed(Routes.settingsRoute);
+            },
+            // onTap: () {
+            //   c.changeTheme();
+            // },
           ),
           // Divider(),
           // MyAboutTile(),

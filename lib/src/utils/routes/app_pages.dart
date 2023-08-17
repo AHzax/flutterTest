@@ -6,14 +6,18 @@ import 'package:docapp/src/bindings/settings_bindings.dart';
 
 // routes
 import '../../bindings/NewDocumentBinding.dart';
+import '../../bindings/createProject_binding.dart';
 import '../../bindings/home_bindings.dart';
 import '../../bindings/login_bindings.dart';
+import '../../bindings/lists_binding.dart';
 import '../../bindings/signaturepagebinding.dart';
 import '../../middlewares/auth.dart';
+import '../../ui/views/createProject.dart';
 import '../../ui/views/docListPage.dart';
 import '../../ui/views/homepage.dart';
 import '../../ui/views/loginPage.dart';
 import '../../ui/views/newdocument.dart';
+import '../../ui/views/Lists.dart';
 import '../../ui/views/signUpPage.dart';
 import '../../ui/views/signaturepage.dart';
 import './app_routes.dart';
@@ -36,8 +40,18 @@ class AppPages {
       binding: HomeBinding(),
       page: () => HomePage(),
       middlewares: [
-          AuthMiddleware(),
+        AuthMiddleware(),
       ],
+    ),
+    GetPage(
+      name: Routes.ListsRoute,
+      page: () => ListsPage(),
+      binding: ListsBinding(),
+    ),
+      GetPage(
+      name: Routes.CreateProjectRoute,
+      page: () => CreateProjectPage(),
+      binding: CreateProjectBinding(),
     ),
     GetPage(
       name: Routes.signUpRoute,
@@ -45,25 +59,25 @@ class AppPages {
       binding: LoginBindings(),
     ),
 
-     GetPage(
+    GetPage(
       name: Routes.docListPage,
       page: () => DocListPage(),
       binding: NewDocumentBinding(),
     ),
 
-     GetPage(
+    GetPage(
       name: Routes.docListPage,
       page: () => DocListPage(),
       binding: NewDocumentBinding(),
     ),
 
-       GetPage(
+    GetPage(
       name: Routes.signatureRoute,
       page: () => SignaturePage(),
       binding: SignaturePageBinding(),
     ),
 
-      GetPage(
+    GetPage(
       name: Routes.newDocument,
       page: () => NewDocument(),
       binding: NewDocumentBinding(),

@@ -2,7 +2,7 @@ part of uidata;
 
 class UIDataColors {
   // <------------------ Just Define Common Color ------------------------------>
-  static final commonColor = Color(0xff3EB489);
+  static const commonColor = Color(0xFF307FF4);
 
   static const kBlueButtonColor = Color(0xff307ff4);
   static const kWhiteButtonColor = Colors.white;
@@ -13,9 +13,9 @@ class UIDataColors {
   static const sectionBackgroundColor = Color(0xFFFFFFFF);
   static const bgColor = Color(0xFFC7ECF1);
 
-  static const appCardSecondary = Color(0xff3bcee1);
+  static const appCardSecondary = Color(0xFF3BCEE1);
 
   static const blackColor = Colors.black;
 
-  static const lightGrayColor = Color.fromARGB(255, 194, 194, 194);
+  static const DarkGreenColor = Color.fromARGB(255, 31, 165, 78);
 }

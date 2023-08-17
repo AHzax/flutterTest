@@ -1,3 +1,5 @@
+import 'package:docapp/src/controllers/settings.dart';
+// import 'package:docapp/src/ui/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -14,7 +16,7 @@ import 'package:docapp/src/ui/views/error.dart';
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
   final SettingsService settings = Get.find<SettingsService>();
-
+  // final ThemeClass c = Get.find<ThemeClass>();
   MyApp({super.key}) {
     // TODO: implement MyApp
   }
@@ -56,8 +58,8 @@ class MyApp extends StatelessWidget {
           // Define a light and dark color theme. Then, read the user's
           // preferred ThemeMode (light, dark, or system default) from the
           // SettingsController to display the correct theme.
-          theme: ThemeData(),
-          darkTheme: ThemeData.dark(),
+          theme: SettingsController.lightTheme,
+          darkTheme: SettingsController.darkTheme,
           themeMode: settings.getThemeMode,
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,

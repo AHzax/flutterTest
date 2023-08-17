@@ -1,4 +1,5 @@
 import 'package:docapp/src/services/auth.dart';
+// import 'package:docapp/src/ui/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:docapp/src/services/restclient.dart';
@@ -7,6 +8,7 @@ import 'package:get/get.dart';
 import 'src/app.dart';
 
 void main() async {
+  // Get.put(ThemeClass());
   // // Set up the SettingsController, which will glue user settings to multiple
   // // Flutter Widgets.
   // final settingsController = SettingsController(SettingsService());
@@ -21,7 +23,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       // systemNavigationBarColor: UIData.commonColor, // navigation bar color
-      statusBarColor: Colors.blue, // status bar color
+      statusBarColor: Colors.white, // status bar color
     ),
   );
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +37,7 @@ Future<void> initializeServices() async {
   // await Firebase.initializeApp();
 
   SettingsService settings = SettingsService();
-  Get.putAsync(() => settings.init());
+  await Get.putAsync(() => settings.init());
   RestClient rest = RestClient();
   await Get.putAsync(() => rest.init());
   AuthService auth = AuthService();

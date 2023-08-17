@@ -41,8 +41,31 @@ class SettingsService extends GetxService with ChangeNotifier {
 
     // Otherwise, store the new ThemeMode in memory
     _themeMode = newThemeMode;
+    themeMode1.value = newThemeMode;
 
     // Important! Inform listeners a change has occurred.
     notifyListeners();
   }
+
+  var themeMode1 = ThemeMode.light.obs;
+
+  void changeThemeMode(ThemeMode newMode) {
+    themeMode1.value = newMode;
+    print(" themeMode.value ${themeMode1.value}");
+  }
+
+  // Color lightPrimaryColor = Color.fromARGB(255, 225, 225, 225);
+  // Color darkPrimaryColor = Color.fromARGB(255, 53, 53, 53);
+
+  // static ThemeData lightTheme = ThemeData(
+  //     primaryColor: ThemeData.light().scaffoldBackgroundColor,
+  //     colorScheme: ColorScheme.light().copyWith(
+  //       primary: Colors.black12,
+  //     ));
+
+  // static ThemeData darkTheme = ThemeData(
+  //     primaryColor: ThemeData.dark().scaffoldBackgroundColor,
+  //     colorScheme: ColorScheme.dark().copyWith(
+  //       primary: Colors.amber,
+  //     ));
 }
