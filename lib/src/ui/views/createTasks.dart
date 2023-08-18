@@ -40,7 +40,7 @@ class CreateTaskPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 35,
+                height: 20,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -65,7 +65,7 @@ class CreateTaskPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 35,
+                height: 20,
               ),
 
               // Column(
@@ -167,7 +167,7 @@ class CreateTaskPage extends StatelessWidget {
               ),
 
               SizedBox(
-                height: 35,
+                height: 20,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -192,7 +192,7 @@ class CreateTaskPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 35,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -290,7 +290,7 @@ class CreateTaskPage extends StatelessWidget {
               ),
 
               SizedBox(
-                height: 35,
+                height: 20,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -335,7 +335,7 @@ class CreateTaskPage extends StatelessWidget {
                         // elevation: 3,
                         fontsize: 17,
                         onPressed: () {},
-                        label: "Cancle",
+                        label: "Cancel",
                         buttonCurve: 2.0,
                         color: UIDataColors.whiteColor,
                         textcolor: UIDataColors.fieldGreenColor,
@@ -346,7 +346,7 @@ class CreateTaskPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 35,
+                height: 20,
               ),
             ],
           ),

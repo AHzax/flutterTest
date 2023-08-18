@@ -45,7 +45,7 @@ class CreateProjectPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 35,
+                height: 20,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -70,7 +70,7 @@ class CreateProjectPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 35,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -168,7 +168,7 @@ class CreateProjectPage extends StatelessWidget {
               ),
 
               SizedBox(
-                height: 35,
+                height: 20,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -193,7 +193,7 @@ class CreateProjectPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 35,
+                height: 20,
               ),
               // Column(
               //   mainAxisAlignment: MainAxisAlignment.start,
@@ -236,8 +236,7 @@ class CreateProjectPage extends StatelessWidget {
                         // dropdownColor: Color.fromARGB(255, 172, 255, 180),
                         hint: Text(
                           "Status",
-                          style: TextStyle(color: Colors.black45
-                          ),
+                          style: TextStyle(color: Colors.black45),
                         ),
                         iconEnabledColor: UIDataColors.fieldGreenColor,
                         items: const [
@@ -272,8 +271,7 @@ class CreateProjectPage extends StatelessWidget {
                         // dropdownColor: Color.fromARGB(255, 172, 255, 180),
                         hint: Text(
                           "Priority",
-                          style: TextStyle(color: Colors.black45
-                          ),
+                          style: TextStyle(color: Colors.black45),
                         ),
                         iconEnabledColor: UIDataColors.fieldGreenColor,
                         items: const [
@@ -296,7 +294,7 @@ class CreateProjectPage extends StatelessWidget {
               ),
 
               SizedBox(
-                height: 35,
+                height: 20,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -321,7 +319,7 @@ class CreateProjectPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 35,
+                height: 20,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -343,7 +341,7 @@ class CreateProjectPage extends StatelessWidget {
                     // elevation: 3,
                     fontsize: 17,
                     onPressed: () {},
-                    label: "Cancle",
+                    label: "Cancel",
                     buttonCurve: 2.0,
                     color: UIDataColors.whiteColor,
                     textcolor: UIDataColors.fieldGreenColor,
