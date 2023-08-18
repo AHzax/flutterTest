@@ -14,18 +14,21 @@ class TextFormFieldContainer extends StatelessWidget {
     this.clearSuffixicon = false,
     this.clearAction,
     this.icon,
+    required this.commonColor,
     this.minLines = 1,
     this.maxLines = 1,
     this.validator,
     this.keyboard = TextInputType.text,
     this.formatter,
     this.showBorder = true,
+    this.hintStyle,
   });
 
   final TextEditingController controllerText;
   final String hintText;
+  final TextStyle? hintStyle;
   final String? labelText;
-
+  final Color commonColor;
   final bool readOnly;
   final Function()? onTap;
   final bool suffixicon;
@@ -52,7 +55,7 @@ class TextFormFieldContainer extends StatelessWidget {
         inputFormatters: formatter,
         decoration: InputDecoration(
           hintText: hintText,
-          contentPadding: EdgeInsets.only(bottom: 20),
+          contentPadding: EdgeInsets.only(bottom: -14),
           labelText: labelText,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           labelStyle: TextStyle(
@@ -68,31 +71,31 @@ class TextFormFieldContainer extends StatelessWidget {
                       child: Container(
                         child: Icon(
                           Icons.cancel_outlined,
-                          color: UIDataColors.commonColor,
+                          color: commonColor,
                         ),
                       ),
                     )
                   : SvgPicture.asset(
                       UIDataVector.vectorDropDown,
                       fit: BoxFit.scaleDown,
-                      color: UIDataColors.commonColor,
+                      color: commonColor,
                     ))
               : (suffixicon
                   ? SvgPicture.asset(
                       UIDataVector.vectorDropDown,
                       fit: BoxFit.scaleDown,
-                      color: UIDataColors.commonColor,
+                      color: commonColor,
                     )
                   : null),
-          hintStyle: UIDataTextStyles.kViewAllStyle,
+          hintStyle: hintStyle,
           enabledBorder: showBorder
               ? UnderlineInputBorder(
-                  borderSide: BorderSide(color: UIDataColors.commonColor),
+                  borderSide: BorderSide(color: commonColor),
                 )
               : null,
           focusedBorder: showBorder
               ? UnderlineInputBorder(
-                  borderSide: BorderSide(color: UIDataColors.commonColor),
+                  borderSide: BorderSide(color: commonColor),
                 )
               : null,
         ),

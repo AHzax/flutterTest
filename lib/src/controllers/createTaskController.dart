@@ -1,14 +1,15 @@
-import 'package:dio/dio.dart';
-import 'package:docapp/src/models/lists.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
 
-import '../services/restclient.dart';
 
-class CreateProjectController extends GetxController {
-  Rx<DateTime> selectedDate1 = DateTime.now().obs;
+
+class CreateTaskController extends GetxController {
+
+
+   Rx<DateTime> selectedDate1 = DateTime.now().obs;
   Rx<DateTime> selectedDate2 = DateTime.now().obs;
 
   void openDatePicker(int fieldNumber) {
@@ -38,12 +39,12 @@ class CreateProjectController extends GetxController {
     );
   }
 
-  //project
+ //project
   TextEditingController NameController = TextEditingController();
   TextEditingController OwnerController = TextEditingController();
   TextEditingController TypeController = TextEditingController();
   TextEditingController DepartmentController = TextEditingController();
 
   //tasks
-  TextEditingController controller = TextEditingController();
+   TextEditingController controller = TextEditingController();
 }

@@ -123,6 +123,7 @@ class LoginPage extends StatelessWidget {
                                       },
                                       label: 'Login',
                                       color: UIDataColors.commonColor,
+                                      showBorder: false,
                                     ),
                             ),
                           ),

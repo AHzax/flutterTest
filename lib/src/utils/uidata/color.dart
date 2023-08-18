@@ -18,4 +18,5 @@ class UIDataColors {
   static const blackColor = Colors.black;
 
   static const DarkGreenColor = Color.fromARGB(255, 31, 165, 78);
+  static const fieldGreenColor = Color.fromRGBO(145, 207, 151, 1);
 }

@@ -1,20 +1,15 @@
-import 'dart:io';
-
-import 'package:docapp/src/controllers/createProjectController.dart';
-import 'package:docapp/src/ui/widgets/forms/textfields/text_field.dart';
+import 'package:docapp/src/ui/widgets/buttons/raised_button.dart';
 import 'package:docapp/src/ui/widgets/forms/textfields/textformfield_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controllers/createTaskController.dart';
 import '../../utils/config/uidata.dart';
 
-import '../../controllers/NewDocumentController.dart';
-import '../widgets/buttons/raised_button.dart';
 import '../widgets/common_scaffold.dart';
-import '../widgets/docList.dart';
 
-class CreateProjectPage extends StatelessWidget {
+class CreateTaskPage extends StatelessWidget {
   Widget bodyData() {
-    return GetBuilder<CreateProjectController>(builder: (_) {
+    return GetBuilder<CreateTaskController>(builder: (_) {
       return SafeArea(
         minimum: EdgeInsets.only(right: 20, left: 20),
         child: SingleChildScrollView(
@@ -27,7 +22,7 @@ class CreateProjectPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Name",
+                    "Subject",
                     style: TextStyle(
                       fontSize: 17,
                       fontFamily: "inter",
@@ -37,7 +32,7 @@ class CreateProjectPage extends StatelessWidget {
                   ),
                   TextFormFieldContainer(
                     commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Project Name",
+                    hintText: "Subject Name",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
                     controllerText: _.NameController,
                     // labelText: "Project Name",
@@ -52,7 +47,7 @@ class CreateProjectPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Owner",
+                    "Reference",
                     style: TextStyle(
                       fontSize: 17,
                       fontFamily: "inter",
@@ -62,9 +57,136 @@ class CreateProjectPage extends StatelessWidget {
                   ),
                   TextFormFieldContainer(
                     commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Owner Name",
+                    hintText: "Project Ref",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
                     controllerText: _.OwnerController,
+                    // labelText: "Project Name",
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 35,
+              ),
+
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Text(
+              //       "Status / priority",
+              //       style: TextStyle(
+              //         fontSize: 17,
+              //         fontFamily: "inter",
+              //         color: UIDataColors.fieldGreenColor,
+              //         fontWeight: FontWeight.w300,
+              //       ),
+              //     ),
+              //     TextFormFieldContainer(
+              //       commonColor: UIDataColors.fieldGreenColor,
+              //       hintText: "Project Status",
+              //       hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
+              //       controllerText: _.controller,
+              //       // labelText: "Project Name",
+              //     ),
+              //   ],
+              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: Get.width / 3,
+                    child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: UIDataColors.fieldGreenColor)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: UIDataColors.DarkGreenColor,
+                          )),
+                        ),
+
+                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
+                        hint: Text(
+                          "Status",
+                          style: TextStyle(color: UIDataColors.fieldGreenColor),
+                        ),
+                        iconEnabledColor: UIDataColors.fieldGreenColor,
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: 'Open',
+                            child: Text('Open'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Completed',
+                            child: Text('Completed'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Cancelled',
+                            child: Text('Cancelled'),
+                          ),
+                        ],
+                        onChanged: (value) {}),
+                  ),
+                  Container(
+                    width: Get.width / 3,
+                    child: DropdownButtonFormField(
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: UIDataColors.fieldGreenColor)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: UIDataColors.DarkGreenColor,
+                          )),
+                        ),
+
+                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
+                        hint: Text(
+                          "Priority",
+                          style: TextStyle(color: UIDataColors.fieldGreenColor),
+                        ),
+                        iconEnabledColor: UIDataColors.fieldGreenColor,
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: 'High',
+                            child: Text('High'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Medium',
+                            child: Text('Medium'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Low',
+                            child: Text('Low'),
+                          ),
+                        ],
+                        onChanged: (value) {}),
+                  ),
+                ],
+              ),
+
+              SizedBox(
+                height: 35,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Type",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontFamily: "inter",
+                      color: UIDataColors.fieldGreenColor,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  ),
+                  TextFormFieldContainer(
+                    commonColor: UIDataColors.fieldGreenColor,
+                    hintText: "Task Type",
+                    hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
+                    controllerText: _.TypeController,
                     // labelText: "Project Name",
                   ),
                 ],
@@ -109,7 +231,7 @@ class CreateProjectPage extends StatelessWidget {
                             children: [
                               Text(
                                 _.selectedDate1.value.toString().split(' ')[0],
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: Color(0xFF91CF97)),
                               ),
                               Icon(
                                 Icons.arrow_drop_down_rounded,
@@ -154,7 +276,7 @@ class CreateProjectPage extends StatelessWidget {
                             children: [
                               Text(
                                 _.selectedDate2.value.toString().split(' ')[0],
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(color: Color(0xFF91CF97)),
                               ),
                               Icon(
                                 Icons.arrow_drop_down_rounded,
@@ -163,134 +285,6 @@ class CreateProjectPage extends StatelessWidget {
                             ],
                           )),
                     ),
-                  ),
-                ],
-              ),
-
-              SizedBox(
-                height: 35,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Type",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: "inter",
-                      color: UIDataColors.fieldGreenColor,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  TextFormFieldContainer(
-                    commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Project Type",
-                    hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.TypeController,
-                    // labelText: "Project Name",
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 35,
-              ),
-              // Column(
-              //   mainAxisAlignment: MainAxisAlignment.start,
-              //   crossAxisAlignment: CrossAxisAlignment.start,
-              //   children: [
-              //     Text(
-              //       "Status / priority",
-              //       style: TextStyle(
-              //         fontSize: 17,
-              //         fontFamily: "inter",
-              //         color: UIDataColors.fieldGreenColor,
-              //         fontWeight: FontWeight.w300,
-              //       ),
-              //     ),
-              //     TextFormFieldContainer(
-              //       commonColor: UIDataColors.fieldGreenColor,
-              //       hintText: "Project Status",
-              //       hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-              //       controllerText: _.controller,
-              //       // labelText: "Project Name",
-              //     ),
-              //   ],
-              // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: Get.width / 3,
-                    child: DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: UIDataColors.fieldGreenColor)),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: UIDataColors.DarkGreenColor,
-                          )),
-                        ),
-
-                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
-                        hint: Text(
-                          "Status",
-                          style: TextStyle(color: Colors.black45
-                          ),
-                        ),
-                        iconEnabledColor: UIDataColors.fieldGreenColor,
-                        items: const [
-                          DropdownMenuItem<String>(
-                            value: 'Open',
-                            child: Text('Open'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Completed',
-                            child: Text('Completed'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Cancelled',
-                            child: Text('Cancelled'),
-                          ),
-                        ],
-                        onChanged: (value) {}),
-                  ),
-                  Container(
-                    width: Get.width / 3,
-                    child: DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: UIDataColors.fieldGreenColor)),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: UIDataColors.DarkGreenColor,
-                          )),
-                        ),
-
-                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
-                        hint: Text(
-                          "Priority",
-                          style: TextStyle(color: Colors.black45
-                          ),
-                        ),
-                        iconEnabledColor: UIDataColors.fieldGreenColor,
-                        items: const [
-                          DropdownMenuItem<String>(
-                            value: 'High',
-                            child: Text('High'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Medium',
-                            child: Text('Medium'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Low',
-                            child: Text('Low'),
-                          ),
-                        ],
-                        onChanged: (value) {}),
                   ),
                 ],
               ),
@@ -313,44 +307,47 @@ class CreateProjectPage extends StatelessWidget {
                   ),
                   TextFormFieldContainer(
                     commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Project Department",
+                    hintText: "Task Department",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
                     controllerText: _.DepartmentController,
                     // labelText: "Project Name",
                   ),
+                  SizedBox(
+                    height: 35,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ReusableButton(
+                        padding: EdgeInsets.only(
+                            left: 35, right: 35, top: 10, bottom: 10),
+                        elevation: 3,
+                        fontsize: 17,
+                        onPressed: () {},
+                        label: "Submit",
+                        buttonCurve: 2.0,
+                        color: UIDataColors.fieldGreenColor,
+                        showBorder: false,
+                      ),
+                      ReusableButton(
+                        padding: EdgeInsets.only(
+                            left: 35, right: 35, top: 10, bottom: 10),
+                        // elevation: 3,
+                        fontsize: 17,
+                        onPressed: () {},
+                        label: "Cancle",
+                        buttonCurve: 2.0,
+                        color: UIDataColors.whiteColor,
+                        textcolor: UIDataColors.fieldGreenColor,
+                        showBorder: true,
+                      )
+                    ],
+                  )
                 ],
               ),
               SizedBox(
                 height: 35,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ReusableButton(
-                    padding: EdgeInsets.only(
-                        left: 35, right: 35, top: 10, bottom: 10),
-                    elevation: 3,
-                    fontsize: 17,
-                    onPressed: () {},
-                    label: "Submit",
-                    buttonCurve: 2.0,
-                    color: UIDataColors.fieldGreenColor,
-                    showBorder: false,
-                  ),
-                  ReusableButton(
-                    padding: EdgeInsets.only(
-                        left: 35, right: 35, top: 10, bottom: 10),
-                    // elevation: 3,
-                    fontsize: 17,
-                    onPressed: () {},
-                    label: "Cancle",
-                    buttonCurve: 2.0,
-                    color: UIDataColors.whiteColor,
-                    textcolor: UIDataColors.fieldGreenColor,
-                    showBorder: true,
-                  )
-                ],
-              )
             ],
           ),
         ),
@@ -368,7 +365,7 @@ class CreateProjectPage extends StatelessWidget {
       showFAB: false,
       showAppBar: true,
       showBottomNav: false,
-      appTitle: 'Create Project',
+      appTitle: 'Create Tasks',
     );
   }
 }

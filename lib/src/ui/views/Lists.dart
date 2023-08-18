@@ -30,6 +30,8 @@ import '../widgets/tab/ReusableTabWithFilterList.dart';
 
 //Dynamic list
 class ListsPage extends StatelessWidget {
+  String docType = Get.arguments['docType'];
+
   Widget bodyData() {
     return GetBuilder<ListsController>(
       builder: (_) {
@@ -75,7 +77,15 @@ class ListsPage extends StatelessWidget {
       headerName: false,
       showFAB: true,
       qrCallback: () {
-        Get.toNamed(Routes.CreateProjectRoute);
+        if (docType.toString() == "project") {
+          Get.toNamed(Routes.CreateProjectRoute);
+        } else if (docType.toString() == "task") {
+          Get.toNamed(Routes.CreatetTaskRoute);
+        } else if (docType.toString() == "Documents") {
+          Get.toNamed(Routes.CreateDocumentsRoute);
+        } else if (docType.toString() == "customer") {
+          Get.toNamed(Routes.CreateCustomerRoute);
+        }
       },
       // floatingIcon: Icons.add,
       showAppBar: true,

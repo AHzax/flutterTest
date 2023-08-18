@@ -15,7 +15,7 @@ class PdfViewPage extends StatelessWidget {
           child: SizedBox(
             height: 300,
             width: 300,
-            child: SfPdfViewer.file(File(_.file!)),
+            // child: SfPdfViewer.file(File(_.file!)),
           ));
     });
   }

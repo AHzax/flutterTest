@@ -7,12 +7,16 @@ import 'package:docapp/src/bindings/settings_bindings.dart';
 // routes
 import '../../bindings/NewDocumentBinding.dart';
 import '../../bindings/createProject_binding.dart';
+import '../../bindings/createTask_binding.dart';
 import '../../bindings/home_bindings.dart';
 import '../../bindings/login_bindings.dart';
 import '../../bindings/lists_binding.dart';
 import '../../bindings/signaturepagebinding.dart';
 import '../../middlewares/auth.dart';
+import '../../ui/views/createCustomer.dart';
+import '../../ui/views/createDocument.dart';
 import '../../ui/views/createProject.dart';
+import '../../ui/views/createTasks.dart';
 import '../../ui/views/docListPage.dart';
 import '../../ui/views/homepage.dart';
 import '../../ui/views/loginPage.dart';
@@ -48,9 +52,24 @@ class AppPages {
       page: () => ListsPage(),
       binding: ListsBinding(),
     ),
-      GetPage(
+    GetPage(
       name: Routes.CreateProjectRoute,
       page: () => CreateProjectPage(),
+      binding: CreateProjectBinding(),
+    ),
+    GetPage(
+      name: Routes.CreatetTaskRoute,
+      page: () => CreateTaskPage(),
+      binding: CreateTaskBinding(),
+    ),
+      GetPage(
+      name: Routes.CreateDocumentsRoute,
+      page: () => CreateDocumentPage(),
+      binding: CreateProjectBinding(),
+    ),
+      GetPage(
+      name: Routes.CreateCustomerRoute,
+      page: () => CreateCustomerPage(),
       binding: CreateProjectBinding(),
     ),
     GetPage(

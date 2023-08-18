@@ -8,11 +8,10 @@ import 'package:get/get.dart';
 import '../../utils/config/uidata.dart';
 
 import '../../controllers/NewDocumentController.dart';
-import '../widgets/buttons/raised_button.dart';
 import '../widgets/common_scaffold.dart';
 import '../widgets/docList.dart';
 
-class CreateProjectPage extends StatelessWidget {
+class CreateDocumentPage extends StatelessWidget {
   Widget bodyData() {
     return GetBuilder<CreateProjectController>(builder: (_) {
       return SafeArea(
@@ -72,104 +71,6 @@ class CreateProjectPage extends StatelessWidget {
               SizedBox(
                 height: 35,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    height: Get.width / 9,
-                    width: Get.width / 2.4,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border(
-                        bottom: BorderSide(
-                          width: 1.3,
-                          color: Color(0xFF91CF97),
-                        ),
-                      ),
-                    ),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(EdgeInsets.all(4)),
-                        shadowColor: MaterialStateProperty.all<Color>(
-                            Colors.transparent),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        textStyle: MaterialStateProperty.all<TextStyle>(
-                          const TextStyle(
-                            color: Color(0xFF91CF97),
-                            fontSize: 11,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                      onPressed: () => _.openDatePicker(1),
-                      child: Obx(() => Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                _.selectedDate1.value.toString().split(' ')[0],
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              Icon(
-                                Icons.arrow_drop_down_rounded,
-                                color: Color(0xFF91CF97),
-                              )
-                            ],
-                          )),
-                    ),
-                  ),
-                  ////////////////////////////////////////////
-                  Container(
-                    height: Get.width / 9,
-                    width: Get.width / 2.4,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border(
-                        bottom: BorderSide(
-                          width: 1.3,
-                          color: Color(0xFF91CF97),
-                        ),
-                      ),
-                    ),
-                    child: ElevatedButton(
-                      style: ButtonStyle(
-                        padding: MaterialStateProperty.all(EdgeInsets.all(4)),
-                        shadowColor: MaterialStateProperty.all<Color>(
-                            Colors.transparent),
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.white),
-                        textStyle: MaterialStateProperty.all<TextStyle>(
-                          const TextStyle(
-                            color: Color(0xFF91CF97),
-                            fontSize: 11,
-                            fontFamily: 'Inter',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                      onPressed: () => _.openDatePicker(2),
-                      child: Obx(() => Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                _.selectedDate2.value.toString().split(' ')[0],
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              Icon(
-                                Icons.arrow_drop_down_rounded,
-                                color: Color(0xFF91CF97),
-                              )
-                            ],
-                          )),
-                    ),
-                  ),
-                ],
-              ),
-
-              SizedBox(
-                height: 35,
-              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,23 +124,8 @@ class CreateProjectPage extends StatelessWidget {
                   Container(
                     width: Get.width / 3,
                     child: DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: UIDataColors.fieldGreenColor)),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: UIDataColors.DarkGreenColor,
-                          )),
-                        ),
-
                         // dropdownColor: Color.fromARGB(255, 172, 255, 180),
-                        hint: Text(
-                          "Status",
-                          style: TextStyle(color: Colors.black45
-                          ),
-                        ),
-                        iconEnabledColor: UIDataColors.fieldGreenColor,
+                        hint: Text("Status"),
                         items: const [
                           DropdownMenuItem<String>(
                             value: 'Open',
@@ -259,23 +145,7 @@ class CreateProjectPage extends StatelessWidget {
                   Container(
                     width: Get.width / 3,
                     child: DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: UIDataColors.fieldGreenColor)),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                            color: UIDataColors.DarkGreenColor,
-                          )),
-                        ),
-
-                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
-                        hint: Text(
-                          "Priority",
-                          style: TextStyle(color: Colors.black45
-                          ),
-                        ),
-                        iconEnabledColor: UIDataColors.fieldGreenColor,
+                        hint: Text("Priority"),
                         items: const [
                           DropdownMenuItem<String>(
                             value: 'High',
@@ -294,7 +164,6 @@ class CreateProjectPage extends StatelessWidget {
                   ),
                 ],
               ),
-
               SizedBox(
                 height: 35,
               ),
@@ -323,34 +192,6 @@ class CreateProjectPage extends StatelessWidget {
               SizedBox(
                 height: 35,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ReusableButton(
-                    padding: EdgeInsets.only(
-                        left: 35, right: 35, top: 10, bottom: 10),
-                    elevation: 3,
-                    fontsize: 17,
-                    onPressed: () {},
-                    label: "Submit",
-                    buttonCurve: 2.0,
-                    color: UIDataColors.fieldGreenColor,
-                    showBorder: false,
-                  ),
-                  ReusableButton(
-                    padding: EdgeInsets.only(
-                        left: 35, right: 35, top: 10, bottom: 10),
-                    // elevation: 3,
-                    fontsize: 17,
-                    onPressed: () {},
-                    label: "Cancle",
-                    buttonCurve: 2.0,
-                    color: UIDataColors.whiteColor,
-                    textcolor: UIDataColors.fieldGreenColor,
-                    showBorder: true,
-                  )
-                ],
-              )
             ],
           ),
         ),
@@ -368,7 +209,7 @@ class CreateProjectPage extends StatelessWidget {
       showFAB: false,
       showAppBar: true,
       showBottomNav: false,
-      appTitle: 'Create Project',
+      appTitle: 'Create Documents',
     );
   }
 }

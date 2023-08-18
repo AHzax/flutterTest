@@ -14,8 +14,14 @@ abstract class Routes {
 
   //createProject
   static const CreateProjectRoute = '/create-project';
+  //createtask
+  static const CreatetTaskRoute = '/create-task';
+  //createdocument
+  static const CreateDocumentsRoute = '/create-document';
+  //createcustomer
+  static const CreateCustomerRoute = '/create-customer';
 
-  //signup 
+  //signup
   static const signUpRoute = '/signUp';
   //sign
   static const signatureRoute = '/signature-screen';

@@ -97,6 +97,7 @@ class SignUpPage extends StatelessWidget {
                         // Get.to(const DashboardScreen());
                       },
                       color: UIDataColors.commonColor,
+                      showBorder: false,
                     ),
                     SizedBox(height: 23),
                     GestureDetector(
