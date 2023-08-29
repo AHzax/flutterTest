@@ -1,19 +1,15 @@
-import 'dart:io';
-
-import 'package:docapp/src/controllers/createProjectController.dart';
-import 'package:docapp/src/ui/widgets/forms/textfields/text_field.dart';
 import 'package:docapp/src/ui/widgets/forms/textfields/textformfield_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../controllers/createCustomerController.dart';
 import '../../utils/config/uidata.dart';
 
-import '../../controllers/NewDocumentController.dart';
+import '../widgets/buttons/raised_button.dart';
 import '../widgets/common_scaffold.dart';
-import '../widgets/docList.dart';
 
 class CreateCustomerPage extends StatelessWidget {
   Widget bodyData() {
-    return GetBuilder<CreateProjectController>(builder: (_) {
+    return GetBuilder<CreateCustomerController>(builder: (_) {
       return SafeArea(
         minimum: EdgeInsets.only(right: 20, left: 20),
         child: SingleChildScrollView(
@@ -36,7 +32,7 @@ class CreateCustomerPage extends StatelessWidget {
                   ),
                   TextFormFieldContainer(
                     commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Project Name",
+                    hintText: "Customer Name",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
                     controllerText: _.NameController,
                     // labelText: "Project Name",
@@ -44,64 +40,95 @@ class CreateCustomerPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 35,
+                height: 20,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Owner",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: "inter",
-                      color: UIDataColors.fieldGreenColor,
-                      fontWeight: FontWeight.w300,
-                    ),
+                  Container(
+                    width: Get.width / 2.8,
+                    child: DropdownButtonFormField(
+                        value: _.groupValue,
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: UIDataColors.fieldGreenColor)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: UIDataColors.DarkGreenColor,
+                          )),
+                        ),
+
+                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
+                        hint: Text(
+                          "Customer Group",
+                          style: TextStyle(color: Colors.black45),
+                        ),
+                        iconEnabledColor: UIDataColors.fieldGreenColor,
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: 'Commercial',
+                            child: Text('Commercial'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Government',
+                            child: Text('Government'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Individual',
+                            child: Text('Individual'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Non Profit',
+                            child: Text('Non Profit'),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          _.groupValue = value;
+                        }),
                   ),
-                  TextFormFieldContainer(
-                    commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Owner Name",
-                    hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.OwnerController,
-                    // labelText: "Project Name",
+                  Container(
+                    width: Get.width / 2.7,
+                    child: DropdownButtonFormField(
+                        value: _.priceListValue,
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: UIDataColors.fieldGreenColor)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: UIDataColors.DarkGreenColor,
+                          )),
+                        ),
+
+                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
+                        hint: Text(
+                          "Default Price List",
+                          style: TextStyle(color: Colors.black45),
+                        ),
+                        iconEnabledColor: UIDataColors.fieldGreenColor,
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: 'Standard Selling',
+                            child: Text('PKR'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Other',
+                            child: Text('Others'),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          _.priceListValue = value;
+                        }),
                   ),
                 ],
-              ),
-              SizedBox(
-                height: 35,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Type",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: "inter",
-                      color: UIDataColors.fieldGreenColor,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  TextFormFieldContainer(
-                    commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Project Type",
-                    hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.TypeController,
-                    // labelText: "Project Name",
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 35,
               ),
               // Column(
               //   mainAxisAlignment: MainAxisAlignment.start,
               //   crossAxisAlignment: CrossAxisAlignment.start,
               //   children: [
               //     Text(
-              //       "Status / priority",
+              //       "Group",
               //       style: TextStyle(
               //         fontSize: 17,
               //         fontFamily: "inter",
@@ -111,9 +138,108 @@ class CreateCustomerPage extends StatelessWidget {
               //     ),
               //     TextFormFieldContainer(
               //       commonColor: UIDataColors.fieldGreenColor,
-              //       hintText: "Project Status",
+              //       hintText: "Customer Group ",
               //       hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-              //       controllerText: _.controller,
+              //       controllerText: _.GroupController,
+              //       // labelText: "Project Name",
+              //     ),
+              //   ],
+              // ),
+              // SizedBox(
+              //   height: 20,
+              // ),
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Text(
+              //       "Type",
+              //       style: TextStyle(
+              //         fontSize: 17,
+              //         fontFamily: "inter",
+              //         color: UIDataColors.fieldGreenColor,
+              //         fontWeight: FontWeight.w300,
+              //       ),
+              //     ),
+              //     TextFormFieldContainer(
+              //       commonColor: UIDataColors.fieldGreenColor,
+              //       hintText: "Customer Type",
+              //       hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
+              //       controllerText: _.TypeController,
+              //       // labelText: "Project Name",
+              //     ),
+              //   ],
+              // ),
+
+              // SizedBox(
+              //   height: 20,
+              // ),
+
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //       width: Get.width / 3,
+              //       child: DropdownButtonFormField(
+              //           // dropdownColor: Color.fromARGB(255, 172, 255, 180),
+              //           hint: Text("Status"),
+              //           items: const [
+              //             DropdownMenuItem<String>(
+              //               value: 'Open',
+              //               child: Text('Open'),
+              //             ),
+              //             DropdownMenuItem<String>(
+              //               value: 'Completed',
+              //               child: Text('Completed'),
+              //             ),
+              //             DropdownMenuItem<String>(
+              //               value: 'Cancelled',
+              //               child: Text('Cancelled'),
+              //             ),
+              //           ],
+              //           onChanged: (value) {}),
+              //     ),
+              //     Container(
+              //       width: Get.width / 3,
+              //       child: DropdownButtonFormField(
+              //           hint: Text("Priority"),
+              //           items: const [
+              //             DropdownMenuItem<String>(
+              //               value: 'external',
+              //               child: Text('External'),
+              //             ),
+              //             DropdownMenuItem<String>(
+              //               value: 'internal',
+              //               child: Text('Internal'),
+              //             ),
+
+              //           ],
+              //           onChanged: (value) {}),
+              //     ),
+              //   ],
+              // ),
+
+              SizedBox(
+                height: 20,
+              ),
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Text(
+              //       "Territory",
+              //       style: TextStyle(
+              //         fontSize: 17,
+              //         fontFamily: "inter",
+              //         color: UIDataColors.fieldGreenColor,
+              //         fontWeight: FontWeight.w300,
+              //       ),
+              //     ),
+              //     TextFormFieldContainer(
+              //       commonColor: UIDataColors.fieldGreenColor,
+              //       hintText: "Customer Territory",
+              //       hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
+              //       controllerText: _.TerritoryController,
               //       // labelText: "Project Name",
               //     ),
               //   ],
@@ -124,74 +250,115 @@ class CreateCustomerPage extends StatelessWidget {
                   Container(
                     width: Get.width / 3,
                     child: DropdownButtonFormField(
+                        value: _.territoryValue,
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: UIDataColors.fieldGreenColor)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: UIDataColors.DarkGreenColor,
+                          )),
+                        ),
+
                         // dropdownColor: Color.fromARGB(255, 172, 255, 180),
-                        hint: Text("Status"),
+                        hint: Text(
+                          "Territory",
+                          style: TextStyle(color: Colors.black45),
+                        ),
+                        iconEnabledColor: UIDataColors.fieldGreenColor,
                         items: const [
                           DropdownMenuItem<String>(
-                            value: 'Open',
-                            child: Text('Open'),
+                            value: 'Pakistan',
+                            child: Text('Pakistan'),
                           ),
                           DropdownMenuItem<String>(
-                            value: 'Completed',
-                            child: Text('Completed'),
+                            value: 'All Territories',
+                            child: Text('All places'),
                           ),
                           DropdownMenuItem<String>(
-                            value: 'Cancelled',
-                            child: Text('Cancelled'),
+                            value: 'Rest Of The World',
+                            child: Text('Other'),
                           ),
                         ],
-                        onChanged: (value) {}),
+                        onChanged: (value) {
+                          _.territoryValue = value;
+                        }),
                   ),
                   Container(
                     width: Get.width / 3,
                     child: DropdownButtonFormField(
-                        hint: Text("Priority"),
+                        value: _.typeValue,
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: UIDataColors.fieldGreenColor)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: UIDataColors.DarkGreenColor,
+                          )),
+                        ),
+
+                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
+                        hint: Text(
+                          "Customer Type",
+                          style: TextStyle(color: Colors.black45),
+                        ),
+                        iconEnabledColor: UIDataColors.fieldGreenColor,
                         items: const [
                           DropdownMenuItem<String>(
-                            value: 'High',
-                            child: Text('High'),
+                            value: 'Company',
+                            child: Text('Company'),
                           ),
                           DropdownMenuItem<String>(
-                            value: 'Medium',
-                            child: Text('Medium'),
-                          ),
-                          DropdownMenuItem<String>(
-                            value: 'Low',
-                            child: Text('Low'),
+                            value: 'Individual',
+                            child: Text('Individual'),
                           ),
                         ],
-                        onChanged: (value) {}),
+                        onChanged: (value) {
+                          _.typeValue = value;
+                        }),
                   ),
                 ],
               ),
+
               SizedBox(
-                height: 35,
+                height: 20,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    "Department",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: "inter",
-                      color: UIDataColors.fieldGreenColor,
-                      fontWeight: FontWeight.w300,
-                    ),
+                  ReusableButton(
+                    padding: EdgeInsets.only(
+                        left: 35, right: 35, top: 10, bottom: 10),
+                    elevation: 3,
+                    fontsize: 17,
+                    onPressed: () {
+                      // _.projectName.value = _.NameController.text;
+
+                      // _.projectType.value = _.TypeController.text;
+                      _.submitForm();
+                      Get.back();
+                    },
+                    label: "Submit",
+                    buttonCurve: 2.0,
+                    color: UIDataColors.fieldGreenColor,
+                    showBorder: false,
                   ),
-                  TextFormFieldContainer(
-                    commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Project Department",
-                    hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.DepartmentController,
-                    // labelText: "Project Name",
-                  ),
+                  ReusableButton(
+                    padding: EdgeInsets.only(
+                        left: 35, right: 35, top: 10, bottom: 10),
+                    // elevation: 3,
+                    fontsize: 17,
+                    onPressed: () {},
+                    label: "Cancel",
+                    buttonCurve: 2.0,
+                    color: UIDataColors.whiteColor,
+                    textcolor: UIDataColors.fieldGreenColor,
+                    showBorder: true,
+                  )
                 ],
-              ),
-              SizedBox(
-                height: 35,
-              ),
+              )
             ],
           ),
         ),

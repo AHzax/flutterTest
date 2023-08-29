@@ -6,6 +6,7 @@ import 'package:docapp/src/bindings/settings_bindings.dart';
 
 // routes
 import '../../bindings/NewDocumentBinding.dart';
+import '../../bindings/createCustomer_binding.dart';
 import '../../bindings/createProject_binding.dart';
 import '../../bindings/createTask_binding.dart';
 import '../../bindings/home_bindings.dart';
@@ -70,7 +71,7 @@ class AppPages {
       GetPage(
       name: Routes.CreateCustomerRoute,
       page: () => CreateCustomerPage(),
-      binding: CreateProjectBinding(),
+      binding: CreateCustomerBinding(),
     ),
     GetPage(
       name: Routes.signUpRoute,

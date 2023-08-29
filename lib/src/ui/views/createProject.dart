@@ -1,16 +1,12 @@
-import 'dart:io';
-
 import 'package:docapp/src/controllers/createProjectController.dart';
-import 'package:docapp/src/ui/widgets/forms/textfields/text_field.dart';
 import 'package:docapp/src/ui/widgets/forms/textfields/textformfield_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../utils/config/uidata.dart';
 
-import '../../controllers/NewDocumentController.dart';
+import '../../utils/config/uidata.dart';
+import '../../utils/routes/app_routes.dart';
 import '../widgets/buttons/raised_button.dart';
 import '../widgets/common_scaffold.dart';
-import '../widgets/docList.dart';
 
 class CreateProjectPage extends StatelessWidget {
   Widget bodyData() {
@@ -44,34 +40,11 @@ class CreateProjectPage extends StatelessWidget {
                   ),
                 ],
               ),
+
               SizedBox(
                 height: 20,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Owner",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: "inter",
-                      color: UIDataColors.fieldGreenColor,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  TextFormFieldContainer(
-                    commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Owner Name",
-                    hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.OwnerController,
-                    // labelText: "Project Name",
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
+              //ui
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -103,12 +76,12 @@ class CreateProjectPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      onPressed: () => _.openDatePicker(1),
+                      onPressed: () => _.openDatePicker(1, Get.context!),
                       child: Obx(() => Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                _.selectedDate1.value.toString().split(' ')[0],
+                                _.startDate.value.toString().split(' ')[0],
                                 style: TextStyle(color: Colors.black),
                               ),
                               Icon(
@@ -148,12 +121,12 @@ class CreateProjectPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      onPressed: () => _.openDatePicker(2),
+                      onPressed: () => _.openDatePicker(2, Get.context!),
                       child: Obx(() => Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                _.selectedDate2.value.toString().split(' ')[0],
+                                _.endDate.value.toString().split(' ')[0],
                                 style: TextStyle(color: Colors.black),
                               ),
                               Icon(
@@ -170,31 +143,29 @@ class CreateProjectPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Type",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: "inter",
-                      color: UIDataColors.fieldGreenColor,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  TextFormFieldContainer(
-                    commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Project Type",
-                    hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.TypeController,
-                    // labelText: "Project Name",
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 20,
-              ),
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Text(
+              //       "Type",
+              //       style: TextStyle(
+              //         fontSize: 17,
+              //         fontFamily: "inter",
+              //         color: UIDataColors.fieldGreenColor,
+              //         fontWeight: FontWeight.w300,
+              //       ),
+              //     ),
+              //     TextFormFieldContainer(
+              //       commonColor: UIDataColors.fieldGreenColor,
+              //       hintText: "Project Type",
+              //       hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
+              //       controllerText: _.TypeController,
+              //       // labelText: "Project Name",
+              //     ),
+              //   ],
+              // ),
+
               // Column(
               //   mainAxisAlignment: MainAxisAlignment.start,
               //   crossAxisAlignment: CrossAxisAlignment.start,
@@ -217,12 +188,143 @@ class CreateProjectPage extends StatelessWidget {
               //     ),
               //   ],
               // ),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
                     width: Get.width / 3,
                     child: DropdownButtonFormField(
+                        value: _.typeValue,
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: UIDataColors.fieldGreenColor)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: UIDataColors.DarkGreenColor,
+                          )),
+                        ),
+
+                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
+                        hint: Text(
+                          "Project Type",
+                          style: TextStyle(color: Colors.black45),
+                        ),
+                        iconEnabledColor: UIDataColors.fieldGreenColor,
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: 'External',
+                            child: Text('External'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Internal',
+                            child: Text('Internal'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Other',
+                            child: Text('Other'),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          _.typeValue = value;
+                        }),
+                  ),
+                  Container(
+                    width: Get.width / 3,
+                    child: DropdownButtonFormField(
+                        value: _.deparmentValue,
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: UIDataColors.fieldGreenColor)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: UIDataColors.DarkGreenColor,
+                          )),
+                        ),
+
+                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
+                        hint: Text(
+                          "Department",
+                          style: TextStyle(color: Colors.black45),
+                        ),
+                        iconEnabledColor: UIDataColors.fieldGreenColor,
+                        items: const [
+                          DropdownMenuItem<String>(
+                            value: 'Accounts',
+                            child: Text('Accounts'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'All Departments',
+                            child: Text('Departments'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Customer Service',
+                            child: Text('Customer supp'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Dispatch',
+                            child: Text('Dispatch'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Human Resources',
+                            child: Text('HR'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Legal',
+                            child: Text('Legal'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Management',
+                            child: Text('Management'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Marketing',
+                            child: Text('Marketing'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Operations',
+                            child: Text('Operations'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Production',
+                            child: Text('Production'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Purchase',
+                            child: Text('Purchase'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Quality Management',
+                            child: Text('Q/A'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Research & Development',
+                            child: Text('R&D'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Sales',
+                            child: Text('Sales'),
+                          ),
+                        ],
+                        onChanged: (value) {
+                          _.deparmentValue = value;
+                        }),
+                  ),
+                ],
+              ),
+
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    width: Get.width / 3,
+                    child: DropdownButtonFormField(
+                        value: _.statusValue,
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -253,11 +355,14 @@ class CreateProjectPage extends StatelessWidget {
                             child: Text('Cancelled'),
                           ),
                         ],
-                        onChanged: (value) {}),
+                        onChanged: (value) {
+                          _.statusValue = value;
+                        }),
                   ),
                   Container(
                     width: Get.width / 3,
                     child: DropdownButtonFormField(
+                        value: _.priorityValue,
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -288,7 +393,9 @@ class CreateProjectPage extends StatelessWidget {
                             child: Text('Low'),
                           ),
                         ],
-                        onChanged: (value) {}),
+                        onChanged: (value) {
+                          _.priorityValue = value;
+                        }),
                   ),
                 ],
               ),
@@ -296,28 +403,28 @@ class CreateProjectPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Department",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: "inter",
-                      color: UIDataColors.fieldGreenColor,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  TextFormFieldContainer(
-                    commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Project Department",
-                    hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.DepartmentController,
-                    // labelText: "Project Name",
-                  ),
-                ],
-              ),
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Text(
+              //       "Department",
+              //       style: TextStyle(
+              //         fontSize: 17,
+              //         fontFamily: "inter",
+              //         color: UIDataColors.fieldGreenColor,
+              //         fontWeight: FontWeight.w300,
+              //       ),
+              //     ),
+              //     TextFormFieldContainer(
+              //       commonColor: UIDataColors.fieldGreenColor,
+              //       hintText: "Project Department",
+              //       hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
+              //       controllerText: _.DepartmentController,
+              //       // labelText: "Project Name",
+              //     ),
+              //   ],
+              // ),
               SizedBox(
                 height: 20,
               ),
@@ -329,7 +436,13 @@ class CreateProjectPage extends StatelessWidget {
                         left: 35, right: 35, top: 10, bottom: 10),
                     elevation: 3,
                     fontsize: 17,
-                    onPressed: () {},
+                    onPressed: () {
+                      // _.projectName.value = _.NameController.text;
+
+                      // _.projectType.value = _.TypeController.text;
+                      _.submitForm();
+                      Get.back();
+                    },
                     label: "Submit",
                     buttonCurve: 2.0,
                     color: UIDataColors.fieldGreenColor,

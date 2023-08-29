@@ -1,26 +1,28 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/config/uidata.dart';
 
 class Listcard extends StatelessWidget {
-  final String? time;
+  final String? rSubtitle;
   final String? title;
   final String? subtitle;
-  final String? owner;
-  final String? date;
-  final String? type;
-  
+  final String? belowSubtitle;
+  final String? rTitle;
+  final String? belowRSubtitle;
 
-  final Widget? status;
   const Listcard(
-      {this.time, this.title, this.subtitle, this.status, this.owner, this.date, this.type});
+      {this.rSubtitle,
+      this.title,
+      this.subtitle,
+      this.rTitle,
+      this.belowSubtitle,
+      this.belowRSubtitle});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: Get.width / 4.5,
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(color: Colors.black),
@@ -32,6 +34,7 @@ class Listcard extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "$title",
@@ -43,31 +46,32 @@ class Listcard extends StatelessWidget {
                 "$subtitle",
                 textAlign: TextAlign.start,
                 style:
-                    TextStyle(fontSize: 14, color: UIDataColors.DarkGreenColor),
+                    TextStyle(fontSize: 12, color: UIDataColors.DarkGreenColor),
               ),
               Text(
-                "$owner",
+                "$belowSubtitle",
                 textAlign: TextAlign.start,
-                style: TextStyle(fontSize: 14, color: Colors.black),
+                style: TextStyle(fontSize: 12, color: Colors.black),
               )
             ],
           ),
 
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "$date",
+                "$rTitle",
                 textAlign: TextAlign.start,
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
               Text(
-                "$time",
+                "$rSubtitle",
                 textAlign: TextAlign.start,
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
               Text(
-                "$type",
+                "$belowRSubtitle",
                 textAlign: TextAlign.start,
                 style:
                     TextStyle(fontSize: 14, color: UIDataColors.DarkGreenColor),

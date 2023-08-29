@@ -77,6 +77,8 @@ class RestClient extends GetxService {
   }) async {
     try {
       late final Response response;
+      print('EndPoint: $endpoint');
+      print('Payload: $data');
       switch (type) {
         case RequestType.post:
           response = await DioHelper.dio.post(
@@ -149,12 +151,4 @@ class RestClient extends GetxService {
           statusMessage: e.message ?? 'Something went wrong');
     }
   }
-
-
-
-
-
-
-
-  
 }

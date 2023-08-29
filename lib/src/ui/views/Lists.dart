@@ -49,14 +49,15 @@ class ListsPage extends StatelessWidget {
                         physics: NeverScrollableScrollPhysics(),
                         itemCount: _.allPro.length,
                         itemBuilder: (c, i) {
+////not only project its selecting the mode: i.e project, tasks , docs, customers and changing list accordingly
+
                           return Listcard(
                             title: "${_.allPro[i]["name"]}",
-                            //not only project its selecting the mode: i.e project, tasks , docs, customers and changing list accordingly
                             subtitle: _.getSubTitle(_.docType, i),
-                            time: '',
-                            owner: "Owner: ${_.getOwner(_.docType, i)}",
-                            type: "type: ${_.getType(_.docType, i)}",
-                            date: "${_.allPro[i]["expected_end_date"] ?? ''}",
+                            belowSubtitle: " ${_.getBelowSub(_.docType, i)}",
+                            rTitle: _.getRTitle(_.docType, i),
+                            rSubtitle: "${_.allPro[i]["status"] ?? ""}",
+                            belowRSubtitle: "${_.getbelowRSub(_.docType, i)}",
                           );
                         },
                       ).marginOnly(left: 15, right: 15),

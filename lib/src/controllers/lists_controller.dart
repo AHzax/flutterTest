@@ -10,7 +10,6 @@ class ListsController extends GetxController {
   //   final DocType = args['docType'];
 
   bool isLoading = true;
-
   RestClient restClient = Get.find<RestClient>();
   dynamic res;
   List allPro = [];
@@ -96,52 +95,76 @@ class ListsController extends GetxController {
 
         break;
       case 'task':
-        subtitle = "${allPro[i]["project"] ?? ''}";
+        subtitle = "Priority: ${allPro[i]["priority"] ?? ''}";
 
         break;
     }
     return subtitle;
   }
 
-  String getType(String d, int i) {
-    String type = '';
+  String getRTitle(String d, int i) {
+    String Rtitle = '';
     switch (d) {
       case 'project':
-        type = "${allPro[i]["department"] ?? ''}";
-        type.toString() == "Human Resources" ? type = "HR" : null;
+        Rtitle = "${allPro[i]["expected_end_date"] ?? ""}";
         break;
       case 'customer':
-        type = "${allPro[i]["customer_group"] ?? ''}";
+        Rtitle = "Lead: ${allPro[i][""] ?? ''}";
 
         break;
       case 'task':
-        type = "${allPro[i]["status"] ?? ''}";
+        Rtitle = "${allPro[i][""] ?? ''}";
+
+        break;
+    }
+    return Rtitle;
+  }
+
+  String getbelowRSub(String d, int i) {
+    String type = '';
+    switch (d) {
+      case 'project':
+        if (type.length > 11) {
+          type = type.substring(0, 9);
+        } else {
+          type = "type: ${allPro[i]["project_type"] ?? ''}";
+        }
+        // type.toString() == "Human Resources" ? type = "HR" : null;
+        break;
+      case 'customer':
+        type = "type: ${allPro[i]["customer_group"] ?? ''}";
+
+        break;
+      case 'task':
+        type = '';
 
         break;
     }
     return type;
   }
 
-  String getOwner(String d, int i) {
-    String Owner = '';
+  String getBelowSub(String d, int i) {
+    String bSub = '';
     switch (d) {
       case 'project':
-        Owner = "${allPro[i]["owner"] ?? ""}";
+        bSub = "${allPro[i]["owner"] ?? ""}";
         // type.toString() == "Human Resources" ? type = "HR" : null;
         break;
       case 'customer':
-        Owner = "${allPro[i]["customer_type"] ?? ""}";
+        bSub = "Type: ${allPro[i]["customer_group"] ?? ""}";
+
+        ///different in postman vs frappe!!!
 
         break;
       case 'task':
-        Owner = "${allPro[i]["owner"] ?? ""}";
-  
+        bSub = "${allPro[i]["project"] ?? ""}";
+
         break;
       default:
-        Owner = "${allPro[i]["owner"] ?? ""}";
+        bSub = "${allPro[i]["owner"] ?? ""}";
         break;
     }
-    return Owner;
+    return bSub;
   }
 
   // Future<void> getProject() async {

@@ -248,10 +248,10 @@ class HomePage extends StatelessWidget {
                                                   NeverScrollableScrollPhysics(),
                                               itemCount: 7,
                                               itemBuilder: (c, i) {
-                                                return const Listcard(
+                                                return Listcard(
                                                   title: 'Title',
                                                   subtitle: 'subtitle',
-                                                  time: '14 Jan, 2023',
+                                                  rSubtitle: '14 Jan, 2023',
                                                 );
                                               },
                                             ).marginOnly(left: 15, right: 15),
@@ -437,10 +437,10 @@ class HomePage extends StatelessWidget {
                                                   NeverScrollableScrollPhysics(),
                                               itemCount: 7,
                                               itemBuilder: (c, i) {
-                                                return const Listcard(
+                                                return Listcard(
                                                   title: 'Title',
                                                   subtitle: 'subtitle',
-                                                  time: '14 Jan, 2023',
+                                                  rSubtitle: '14 Jan, 2023',
                                                 );
                                               },
                                             ).marginOnly(left: 15, right: 15),

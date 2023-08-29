@@ -2,12 +2,14 @@ import 'package:docapp/src/ui/widgets/buttons/raised_button.dart';
 import 'package:docapp/src/ui/widgets/forms/textfields/textformfield_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart';
 import '../../controllers/createTaskController.dart';
 import '../../utils/config/uidata.dart';
 
 import '../widgets/common_scaffold.dart';
 
 class CreateTaskPage extends StatelessWidget {
+  String? selectedItem;
   Widget bodyData() {
     return GetBuilder<CreateTaskController>(builder: (_) {
       return SafeArea(
@@ -34,7 +36,7 @@ class CreateTaskPage extends StatelessWidget {
                     commonColor: UIDataColors.fieldGreenColor,
                     hintText: "Subject Name",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.NameController,
+                    controllerText: _.subjectController,
                     // labelText: "Project Name",
                   ),
                 ],
@@ -46,21 +48,52 @@ class CreateTaskPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Reference",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: "inter",
-                      color: UIDataColors.fieldGreenColor,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  TextFormFieldContainer(
-                    commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Project Ref",
-                    hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.OwnerController,
-                    // labelText: "Project Name",
+                  // Text(
+                  //   "Reference",
+                  //   style: TextStyle(
+                  //     fontSize: 17,
+                  //     fontFamily: "inter",
+                  //     color: UIDataColors.fieldGreenColor,
+                  //     fontWeight: FontWeight.w300,
+                  //   ),
+                  // ),
+                  // TextFormFieldContainer(
+                  //   commonColor: UIDataColors.fieldGreenColor,
+                  //   hintText: "Project Ref",
+                  //   hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
+                  //   controllerText: _.projectController,
+                  //   // labelText: "Project Name",
+                  // ),
+                  Container(
+                    width: Get.width / 2.7,
+                    child: DropdownButtonFormField(
+                        value: _.projValue,
+                        decoration: InputDecoration(
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: UIDataColors.fieldGreenColor)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                            color: UIDataColors.DarkGreenColor,
+                          )),
+                        ),
+
+                        // dropdownColor: Color.fromARGB(255, 172, 255, 180),
+                        hint: Text(
+                          "Project ref",
+                          style: TextStyle(color: UIDataColors.fieldGreenColor),
+                        ),
+                        iconEnabledColor: UIDataColors.fieldGreenColor,
+                        items: _.projectNames
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (value) {
+                          _.projValue = value;
+                        }),
                   ),
                 ],
               ),
@@ -94,8 +127,9 @@ class CreateTaskPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: Get.width / 3,
+                    width: Get.width / 2.7,
                     child: DropdownButtonFormField(
+                        value: _.statusValue,
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -125,12 +159,31 @@ class CreateTaskPage extends StatelessWidget {
                             value: 'Cancelled',
                             child: Text('Cancelled'),
                           ),
+                          DropdownMenuItem<String>(
+                            value: 'Working',
+                            child: Text('Working'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Overdue',
+                            child: Text('Overdue'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Pending Review',
+                            child: Text('Pending Review'),
+                          ),
+                          DropdownMenuItem<String>(
+                            value: 'Template',
+                            child: Text('Template'),
+                          ),
                         ],
-                        onChanged: (value) {}),
+                        onChanged: (value) {
+                          _.statusValue = value;
+                        }),
                   ),
                   Container(
-                    width: Get.width / 3,
+                    width: Get.width / 2.7,
                     child: DropdownButtonFormField(
+                        value: _.priorityValue,
                         decoration: InputDecoration(
                           enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -149,6 +202,10 @@ class CreateTaskPage extends StatelessWidget {
                         iconEnabledColor: UIDataColors.fieldGreenColor,
                         items: const [
                           DropdownMenuItem<String>(
+                            value: 'Urgent',
+                            child: Text('Urgent'),
+                          ),
+                          DropdownMenuItem<String>(
                             value: 'High',
                             child: Text('High'),
                           ),
@@ -161,36 +218,13 @@ class CreateTaskPage extends StatelessWidget {
                             child: Text('Low'),
                           ),
                         ],
-                        onChanged: (value) {}),
+                        onChanged: (value) {
+                          _.priorityValue = value;
+                        }),
                   ),
                 ],
               ),
 
-              SizedBox(
-                height: 20,
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Type",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: "inter",
-                      color: UIDataColors.fieldGreenColor,
-                      fontWeight: FontWeight.w300,
-                    ),
-                  ),
-                  TextFormFieldContainer(
-                    commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Task Type",
-                    hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.TypeController,
-                    // labelText: "Project Name",
-                  ),
-                ],
-              ),
               SizedBox(
                 height: 20,
               ),
@@ -225,13 +259,13 @@ class CreateTaskPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      onPressed: () => _.openDatePicker(1),
+                      onPressed: () => _.openDatePicker(1, Get.context!),
                       child: Obx(() => Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                _.selectedDate1.value.toString().split(' ')[0],
-                                style: TextStyle(color: Color(0xFF91CF97)),
+                                _.startDate.value.toString().split(' ')[0],
+                                style: TextStyle(color: Colors.black),
                               ),
                               Icon(
                                 Icons.arrow_drop_down_rounded,
@@ -270,13 +304,13 @@ class CreateTaskPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      onPressed: () => _.openDatePicker(2),
+                      onPressed: () => _.openDatePicker(2, Get.context!),
                       child: Obx(() => Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                _.selectedDate2.value.toString().split(' ')[0],
-                                style: TextStyle(color: Color(0xFF91CF97)),
+                                _.endDate.value.toString().split(' ')[0],
+                                style: TextStyle(color: Colors.black),
                               ),
                               Icon(
                                 Icons.arrow_drop_down_rounded,
@@ -297,7 +331,7 @@ class CreateTaskPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Department",
+                    "Type",
                     style: TextStyle(
                       fontSize: 17,
                       fontFamily: "inter",
@@ -307,47 +341,111 @@ class CreateTaskPage extends StatelessWidget {
                   ),
                   TextFormFieldContainer(
                     commonColor: UIDataColors.fieldGreenColor,
-                    hintText: "Task Department",
+                    hintText: "Task Type",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.DepartmentController,
+                    controllerText: _.TypeController,
                     // labelText: "Project Name",
                   ),
-                  SizedBox(
-                    height: 35,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ReusableButton(
-                        padding: EdgeInsets.only(
-                            left: 35, right: 35, top: 10, bottom: 10),
-                        elevation: 3,
-                        fontsize: 17,
-                        onPressed: () {},
-                        label: "Submit",
-                        buttonCurve: 2.0,
-                        color: UIDataColors.fieldGreenColor,
-                        showBorder: false,
-                      ),
-                      ReusableButton(
-                        padding: EdgeInsets.only(
-                            left: 35, right: 35, top: 10, bottom: 10),
-                        // elevation: 3,
-                        fontsize: 17,
-                        onPressed: () {},
-                        label: "Cancel",
-                        buttonCurve: 2.0,
-                        color: UIDataColors.whiteColor,
-                        textcolor: UIDataColors.fieldGreenColor,
-                        showBorder: true,
-                      )
-                    ],
-                  )
                 ],
               ),
               SizedBox(
                 height: 20,
               ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ReusableButton(
+                    padding: EdgeInsets.only(
+                        left: 35, right: 35, top: 10, bottom: 10),
+                    elevation: 3,
+                    fontsize: 17,
+                    onPressed: () {
+                      // _.projectName.value = _.NameController.text;
+
+                      // _.projectType.value = _.TypeController.text;
+                      _.submitForm();
+                      Get.back();
+                    },
+                    label: "Submit",
+                    buttonCurve: 2.0,
+                    color: UIDataColors.fieldGreenColor,
+                    showBorder: false,
+                  ),
+                  ReusableButton(
+                    padding: EdgeInsets.only(
+                        left: 35, right: 35, top: 10, bottom: 10),
+                    // elevation: 3,
+                    fontsize: 17,
+                    onPressed: () {},
+                    label: "Cancel",
+                    buttonCurve: 2.0,
+                    color: UIDataColors.whiteColor,
+                    textcolor: UIDataColors.fieldGreenColor,
+                    showBorder: true,
+                  )
+                ],
+              )
+
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   crossAxisAlignment: CrossAxisAlignment.start,
+              //   children: [
+              //     Text(
+              //       "Department",
+              //       style: TextStyle(
+              //         fontSize: 17,
+              //         fontFamily: "inter",
+              //         color: UIDataColors.fieldGreenColor,
+              //         fontWeight: FontWeight.w300,
+              //       ),
+              //     ),
+              //     TextFormFieldContainer(
+              //       commonColor: UIDataColors.fieldGreenColor,
+              //       hintText: "Task Department",
+              //       hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
+              //       controllerText: _.DepartmentController,
+              //       // labelText: "Project Name",
+              //     ),
+              //     SizedBox(
+              //       height: 35,
+              //     ),
+              //     Row(
+              //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //       children: [
+              //         ReusableButton(
+              //           padding: EdgeInsets.only(
+              //               left: 35, right: 35, top: 10, bottom: 10),
+              //           elevation: 3,
+              //           fontsize: 17,
+              //           onPressed: () {},
+              //           label: "Submit",
+              //           buttonCurve: 2.0,
+              //           color: UIDataColors.fieldGreenColor,
+              //           showBorder: false,
+              //         ),
+              //         ReusableButton(
+              //           padding: EdgeInsets.only(
+              //               left: 35, right: 35, top: 10, bottom: 10),
+              //           // elevation: 3,
+              //           fontsize: 17,
+              //           onPressed: () {},
+              //           label: "Cancel",
+              //           buttonCurve: 2.0,
+              //           color: UIDataColors.whiteColor,
+              //           textcolor: UIDataColors.fieldGreenColor,
+              //           showBorder: true,
+              //         )
+              //       ],
+              //     )
+              //   ],
+              // ),
+
+              // SizedBox(
+              //   height: 20,
+              // ),
             ],
           ),
         ),

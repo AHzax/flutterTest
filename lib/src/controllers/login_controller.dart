@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:docapp/src/services/restclient.dart';
 
 import '../models/error.dart';
-import '../models/login.dart';
+
 import '../services/auth.dart';
 import '../utils/routes/app_routes.dart';
 
@@ -63,6 +63,8 @@ class LoginController extends GetxController {
   }
 
   ///////////////////////////////////////////////////////////
+  ///
+  ///
   @override
   Future<void> onInit() async {
     super.onInit();
