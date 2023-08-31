@@ -1,13 +1,11 @@
-import 'package:dio/dio.dart';
-import 'package:docapp/src/models/lists.dart';
+
 import 'package:get/get.dart';
 
 import '../services/restclient.dart';
 
 class ListsController extends GetxController {
   String docType = Get.arguments['docType'];
-  //  final args = Get.arguments as Map<String, dynamic>;
-  //   final DocType = args['docType'];
+
 
   bool isLoading = true;
   RestClient restClient = Get.find<RestClient>();
@@ -17,8 +15,8 @@ class ListsController extends GetxController {
 
   Map projects = {};
   String? owner;
-  String? OwnerName;
-  String? Time;
+  String? ownerName;
+  String? time;
 
   @override
   Future<void> onInit() async {
@@ -103,21 +101,21 @@ class ListsController extends GetxController {
   }
 
   String getRTitle(String d, int i) {
-    String Rtitle = '';
+    String rTitle = '';
     switch (d) {
       case 'project':
-        Rtitle = "${allPro[i]["expected_end_date"] ?? ""}";
+        rTitle = "${allPro[i]["expected_end_date"] ?? ""}";
         break;
       case 'customer':
-        Rtitle = "Lead: ${allPro[i][""] ?? ''}";
+        rTitle = "Lead: ${allPro[i][""] ?? ''}";
 
         break;
       case 'task':
-        Rtitle = "${allPro[i][""] ?? ''}";
+        rTitle = "${allPro[i][""] ?? ''}";
 
         break;
     }
-    return Rtitle;
+    return rTitle;
   }
 
   String getbelowRSub(String d, int i) {
@@ -167,30 +165,4 @@ class ListsController extends GetxController {
     return bSub;
   }
 
-  // Future<void> getProject() async {
-  //   try {
-  //     res = await restClient.sendRequest('/resource/$docType/PROJ-0002',
-  //         type: RequestType.get);
-  //     projects.addAll(res);
-  //     spliting();
-  //     update();
-  //     print("Check Data projects;${projects.toString()}");
-  //   } catch (e, s) {
-  //     print("Error is: ${e}");
-  //     print("Error is stack: ${s}");
-  //   }
-  // }
-
-  // void spliting() {
-  //   String owner = allPro["data"]["owner"];
-  //   dynamic ownerName = owner.split("@");
-  //   OwnerName = ownerName[0];
-  //   String time = allPro["data"]["to_time"];
-  //   dynamic splitTime = time.split(".");
-  //   print("spliting splitingspliting spliting${splitTime[0]}");
-  //   Time = splitTime[0];
-  // }
-
-  //${_.projects["data"]["owner"]}
-  //projects["data"]["to_time"]}
 }

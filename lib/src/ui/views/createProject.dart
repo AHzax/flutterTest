@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../utils/config/uidata.dart';
-import '../../utils/routes/app_routes.dart';
 import '../widgets/buttons/raised_button.dart';
 import '../widgets/common_scaffold.dart';
 
@@ -35,7 +34,7 @@ class CreateProjectPage extends StatelessWidget {
                     commonColor: UIDataColors.fieldGreenColor,
                     hintText: "Project Name",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.NameController,
+                    controllerText: _.nameController,
                     // labelText: "Project Name",
                   ),
                 ],

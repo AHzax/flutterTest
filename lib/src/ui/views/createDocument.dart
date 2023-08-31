@@ -1,15 +1,10 @@
-import 'dart:io';
-
 import 'package:docapp/src/controllers/createProjectController.dart';
-import 'package:docapp/src/ui/widgets/forms/textfields/text_field.dart';
 import 'package:docapp/src/ui/widgets/forms/textfields/textformfield_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../utils/config/uidata.dart';
 
-import '../../controllers/NewDocumentController.dart';
 import '../widgets/common_scaffold.dart';
-import '../widgets/docList.dart';
 
 class CreateDocumentPage extends StatelessWidget {
   Widget bodyData() {
@@ -38,7 +33,7 @@ class CreateDocumentPage extends StatelessWidget {
                     commonColor: UIDataColors.fieldGreenColor,
                     hintText: "Project Name",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.NameController,
+                    controllerText: _.nameController,
                     // labelText: "Project Name",
                   ),
                 ],
@@ -63,7 +58,7 @@ class CreateDocumentPage extends StatelessWidget {
                     commonColor: UIDataColors.fieldGreenColor,
                     hintText: "Owner Name",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.OwnerController,
+                    controllerText: _.ownerController,
                     // labelText: "Project Name",
                   ),
                 ],
@@ -88,7 +83,7 @@ class CreateDocumentPage extends StatelessWidget {
                     commonColor: UIDataColors.fieldGreenColor,
                     hintText: "Project Type",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.TypeController,
+                    controllerText: _.typeController,
                     // labelText: "Project Name",
                   ),
                 ],
@@ -184,7 +179,7 @@ class CreateDocumentPage extends StatelessWidget {
                     commonColor: UIDataColors.fieldGreenColor,
                     hintText: "Project Department",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.DepartmentController,
+                    controllerText: _.departmentController,
                     // labelText: "Project Name",
                   ),
                 ],

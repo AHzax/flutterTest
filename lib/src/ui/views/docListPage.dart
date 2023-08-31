@@ -1,8 +1,6 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../utils/config/uidata.dart';
 
 import '../../controllers/NewDocumentController.dart';
 import '../widgets/common_scaffold.dart';

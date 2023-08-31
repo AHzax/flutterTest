@@ -2,14 +2,12 @@ import 'package:docapp/src/ui/widgets/buttons/raised_button.dart';
 import 'package:docapp/src/ui/widgets/forms/textfields/textformfield_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path/path.dart';
 import '../../controllers/createTaskController.dart';
 import '../../utils/config/uidata.dart';
 
 import '../widgets/common_scaffold.dart';
 
 class CreateTaskPage extends StatelessWidget {
-  String? selectedItem;
   Widget bodyData() {
     return GetBuilder<CreateTaskController>(builder: (_) {
       return SafeArea(

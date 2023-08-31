@@ -14,7 +14,7 @@ class CreateCustomerController extends GetxController {
 
   // Rx<DateTime> selectedDate1 = DateTime.now().obs;
   // Rx<DateTime> selectedDate2 = DateTime.now().obs;
-  TextEditingController NameController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
   dynamic groupValue;
   dynamic priceListValue;
@@ -54,7 +54,7 @@ class CreateCustomerController extends GetxController {
     //     DateFormat('dd-MM-YYYY hh:ii:ss').format(EndDate);
     try {
       Customer customer = Customer(
-        name: NameController.text,
+        name: nameController.text,
         type: typeValue,
         group: groupValue,
         territory: territoryValue,
@@ -70,7 +70,7 @@ class CreateCustomerController extends GetxController {
       e as ErrorResponse;
       print("ERRRRRRRRRRRRROOORRR${e.statusMessage}");
       ////////////////////////////////
-      NameController.clear();
+      nameController.clear();
     }
   }
 

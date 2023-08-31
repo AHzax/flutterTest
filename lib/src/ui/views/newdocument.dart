@@ -1,12 +1,8 @@
-import 'dart:io';
-
-import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../../controllers/NewDocumentController.dart';
-import '../../utils/routes/app_routes.dart';
 import '../widgets/common_scaffold.dart';
 import '../widgets/forms/textfields/text_field.dart';
 

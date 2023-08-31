@@ -34,7 +34,7 @@ class CreateCustomerPage extends StatelessWidget {
                     commonColor: UIDataColors.fieldGreenColor,
                     hintText: "Customer Name",
                     hintStyle: TextStyle(fontSize: 13, color: Colors.black38),
-                    controllerText: _.NameController,
+                    controllerText: _.nameController,
                     // labelText: "Project Name",
                   ),
                 ],

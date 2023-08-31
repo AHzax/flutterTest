@@ -26,12 +26,12 @@ class Project {
  factory Project.fromJson(Map<String, dynamic> data) {
     return Project(
       name: data['name'],
-      // type: data['project_type'],
-      // status: data['status'],
-      // department: data['department'],
-      // priority: data["priority"],
-      // startDate: data["expected_start_date"],
-      // endDate: data["expected_end_date"],
+      type: data['project_type'],
+      status: data['status'],
+      department: data['department'],
+      priority: data["priority"],
+      startDate: data["expected_start_date"],
+      endDate: data["expected_end_date"],
     );
   }
 

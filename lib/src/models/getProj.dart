@@ -1,12 +1,12 @@
   
-  List<items> itemsFromJson(dynamic str) => List<items>.from(str.map((x) => items.fromJson(x)));
+  List<Items> itemsFromJson(dynamic str) => List<Items>.from(str.map((x) => Items.fromJson(x)));
 
-class items {
+class Items {
   String? name;
 
-  items({this.name});
+  Items({this.name});
 
-  items.fromJson(Map<String, dynamic> json) {
+  Items.fromJson(Map<String, dynamic> json) {
     name = json['name'];
   }
 

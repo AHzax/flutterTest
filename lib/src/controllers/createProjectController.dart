@@ -1,12 +1,7 @@
-import 'package:dio/dio.dart';
-import 'package:docapp/src/models/lists.dart';
-import 'package:docapp/src/utils/config/config.dart';
-import 'package:docapp/src/utils/routes/app_routes.dart';
-import 'package:flutter/cupertino.dart';
+
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import '../models/createProj.dart';
 import '../models/error.dart';
@@ -29,10 +24,10 @@ class CreateProjectController extends GetxController {
   dynamic priorityValue;
 
   //project
-  TextEditingController NameController = TextEditingController();
-  TextEditingController OwnerController = TextEditingController();
-  TextEditingController TypeController = TextEditingController();
-  TextEditingController DepartmentController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController ownerController = TextEditingController() ;
+  TextEditingController typeController = TextEditingController();
+  TextEditingController departmentController = TextEditingController();
 
   // var projectName = ''.obs;
   // var projectType = ''.obs;
@@ -74,7 +69,7 @@ class CreateProjectController extends GetxController {
 
   // void myfun() {
   //   Project project = Project(
-  //   name: NameController.text,
+  //   name: nameController.text,
   //   type: "dfdf",
   //   // owner: 'Software Engineer',
   //   department: "Marketing",
@@ -82,7 +77,7 @@ class CreateProjectController extends GetxController {
   // }
 
   Future<void> openDatePicker(int fieldNumber, BuildContext context) async {
-    DateTime initialDate = fieldNumber == 1 ? startDate.value : endDate.value;
+    // DateTime initialDate = fieldNumber == 1 ? startDate.value : endDate.value;
 
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -107,7 +102,7 @@ class CreateProjectController extends GetxController {
     //     DateFormat('dd-MM-YYYY hh:ii:ss').format(EndDate);
     try {
       Project project = Project(
-        name: NameController.text,
+        name: nameController.text,
         type: typeValue,
         priority: priorityValue,
         status: statusValue,
@@ -120,15 +115,16 @@ class CreateProjectController extends GetxController {
         data: project.toApiJson(),
         type: RequestType.post,
       );
+      await list.getAllProject();
       print('---- ${"hahahahahahahah ${deparmentValue}"}');
     } catch (e) {
       e as ErrorResponse;
       print("ERRRRRRRRRRRRROOORRR${e.statusMessage}");
       ////////////////////////////////
-      NameController.clear();
-      TypeController.clear();
-      DepartmentController.clear();
-      OwnerController.clear();
+      nameController.clear();
+      typeController.clear();
+      departmentController.clear();
+      ownerController.clear();
     }
   }
 

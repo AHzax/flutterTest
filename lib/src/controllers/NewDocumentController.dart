@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
-import 'package:document_scanner_flutter/document_scanner_flutter.dart';
+// import 'package:document_scanner_flutter/document_scanner_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -21,7 +21,7 @@ class NewDocumentController extends GetxController {
   Directory? docDir;
   String? mimeName;
   String? file;
-  bool value = false ;
+  bool value = false;
 
   @override
   onInit() async {
@@ -38,16 +38,16 @@ class NewDocumentController extends GetxController {
   }
 
   openPdfScanner(context) async {
-    var doc = await DocumentScannerFlutter.launchForPdf(context);
-    if (doc != null) {
-      scannedDocument = null;
+    // var doc = await DocumentScannerFlutter.launchForPdf(context);
+    // if (doc != null) {
+    //   scannedDocument = null;
 
-      await Future.delayed(Duration(milliseconds: 100));
-      scannedDocumentFile = doc;
-      scannedDocument = await PDFDocument.fromFile(doc);
-      update();
-    }
-    pathPdf = '';
+    //   await Future.delayed(Duration(milliseconds: 100));
+    //   scannedDocumentFile = doc;
+    //   scannedDocument = await PDFDocument.fromFile(doc);
+    //   update();
+    // }
+    // pathPdf = '';
   }
 
 ////////////////////////////////////////

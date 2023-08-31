@@ -22,7 +22,7 @@ class Listcard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Get.width / 4.5,
+      height: Get.height / 8.5,
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(color: Colors.black),

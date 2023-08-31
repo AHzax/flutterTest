@@ -146,7 +146,7 @@ class LoginPage extends StatelessWidget {
                                 color: Colors.black,
                                 fontSize: 12,
                               ),
-                              children: <TextSpan>[
+                              children: const <TextSpan>[
                                 TextSpan(
                                   text: 'Register Now',
                                   style: TextStyle(

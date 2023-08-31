@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import "package:get/get.dart";
 
-import '../../utils/config/uidata.dart';
-
 class LogoCard extends StatelessWidget {
-  const LogoCard({required this.imagePath, this.CardText});
-
+  const LogoCard(
+      {required this.imagePath, this.CardText, required this.onPressed});
+  final VoidCallback onPressed;
   final String imagePath;
   final String? CardText;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: onPressed,
       child: Column(
         children: [
           Container(
+            padding: EdgeInsets.all(Get.width * 0.013),
             decoration: ShapeDecoration(
               color: Colors.white,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(2)),
-              shadows: [
+              shadows: const [
                 BoxShadow(
                   color: Color(0x2B000000),
                   blurRadius: 21,
@@ -29,22 +30,24 @@ class LogoCard extends StatelessWidget {
               ],
             ),
             child: Container(
-              width: 36,
-              height: Get.width / 9.2,
+              width: Get.width / 9.8,
+              height: Get.width / 9.8,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(imagePath),
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 ),
               ),
             ).paddingAll(6),
-          ).paddingAll(5),
+          ),
           Container(
-            width: 54,
+            width: Get.width / 9.8,
             child: Text(
               CardText ?? "",
               style: TextStyle(color: Colors.black),
               textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
             ),
           )
         ],

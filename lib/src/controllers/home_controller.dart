@@ -1,5 +1,4 @@
-import 'package:dio/dio.dart';
-import 'package:docapp/src/models/lists.dart';
+
 import 'package:get/get.dart';
 
 import '../services/restclient.dart';

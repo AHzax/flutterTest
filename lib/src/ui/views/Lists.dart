@@ -1,41 +1,19 @@
-// flutter imports
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:docapp/src/controllers/lists_controller.dart';
 import 'package:docapp/src/utils/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/cupertino.dart';
 
-// package imports
 import 'package:get/get.dart';
 
-import '../../controllers/home_controller.dart';
-import '../../utils/config/uidata.dart';
-import '../widgets/card.dart';
 import '../widgets/common_scaffold.dart';
 import '../widgets/lists/listcard.dart';
-import '../widgets/logoWidget.dart';
-import '../widgets/tab/ReusableTabWithFilterList.dart';
-
-// utils
-
-// services
-
-// import '../../../../utils/config/uidata.dart';
-// import '../../../widgets/common_scaffold.dart';
-// import '../controller/home_controller.dart';
-// import '../../../widgets/lists/listcard.dart';
-
-// widgets
 
 //Dynamic list
 class ListsPage extends StatelessWidget {
-  String docType = Get.arguments['docType'];
+  final String docType = Get.arguments['docType'];
 
   Widget bodyData() {
     return GetBuilder<ListsController>(
       builder: (_) {
-        // String name = _.docType;
         return SafeArea(
           child: _.isLoading
               ? const Center(

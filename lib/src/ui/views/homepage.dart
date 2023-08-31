@@ -30,63 +30,50 @@ import '../widgets/tab/ReusableTabWithFilterList.dart';
 //Dynamic list
 
 class HomePage extends StatelessWidget {
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  // GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   Widget bodyData() {
     return GetBuilder<HomeController>(
       builder: (_) {
-        return SafeArea(
-          child: _.isLoading
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      // Container(
-                      //   height: Get.height / 5,
-                      //   width: Get.width,
-                      //   decoration: BoxDecoration(
-                      //     color: UIDataColors.bgColor,
-                      //     border: Border.all(color: UIDataColors.bgColor),
-                      //     borderRadius: const BorderRadius.all(
-                      //       Radius.circular(3),
-                      //     ),
-                      //   ),
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.start,
-                      //     mainAxisAlignment: MainAxisAlignment.center,
-                      //     children: [
-                      //       const Text('12'),
-                      //       const Text('In Progres \nProject'),
-                      //     ],
-                      //   ).paddingAll(20),
-                      // ).marginOnly(left: 15, right: 15),
-                      ReusableTabWithFilterList(
-                        tabLength: 2,
-                        tabs: [
-                          Tab(
-                            child: Text(
-                              "Personal",
+        return _.isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : Column(
+                children: [
+                  Container(
+                    height: Get.height / 1.275,
+                    child: ReusableTabWithFilterList(
+                      tabLength: 2,
+                      tabs: [
+                        Tab(
+                          child: Text(
+                            "Personal",
+                            style: TextStyle(
+                                // color: UIDataColors.whiteColor,
+                                fontSize: 15),
+                          ),
+                        ),
+                        Tab(
+                          child: Text("Business",
                               style: TextStyle(
                                   // color: UIDataColors.whiteColor,
-                                  fontSize: 15),
-                            ),
-                          ),
-                          Tab(
-                            child: Text("Business",
-                                style: TextStyle(
-                                    // color: UIDataColors.whiteColor,
-                                    fontSize: 15)),
-                          ),
-                        ],
-                        tabBarView: [
-                          /////////////////////////////tab1///////////////////////////
-                          Column(
+                                  fontSize: 15)),
+                        ),
+                      ],
+                      tabBarView: [
+                        /////////////////////////////tab1///////////////////////////
+
+                        SingleChildScrollView(
+                          child: Column(
                             children: [
+                              SizedBox(
+                                height: Get.height / 40,
+                              ),
                               Container(
                                 height: Get.height / 4.2,
                                 width: Get.width / 1.11,
                                 decoration: ShapeDecoration(
+                                  color: Colors.black38,
                                   image: DecorationImage(
                                       image: AssetImage(
                                         'assets/images/Group 94.jpg',
@@ -97,49 +84,51 @@ class HomePage extends StatelessWidget {
                                   ),
                                   // color: Colors.blue,
                                 ),
-                              ).paddingOnly(top: Get.height * 0.025),
-                              InkWell(
-                                onTap: () {
-                                  Get.toNamed(Routes.signatureRoute);
-                                },
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: Container(
-                                    width: Get.width / 1.1,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        LogoCard(
-                                            imagePath:
-                                                "assets/images/file-storage 1.png",
-                                            CardText: "File Storage"),
-                                        LogoCard(
-                                          imagePath:
-                                              "assets/images/drive 1.png",
-                                          CardText: "Google Drive",
-                                        ),
-                                        LogoCard(
-                                          imagePath:
-                                              "assets/images/dropbox 1.png",
-                                          CardText: "DropBox",
-                                        ),
-                                        LogoCard(
-                                          imagePath:
-                                              "assets/images/personal-information 1.png",
-                                          CardText: "Personal Storage",
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ).paddingOnly(
-                                  top: 8,
-                                  bottom: 8,
-                                ),
                               ),
-
+                              SizedBox(
+                                height: Get.height / 40,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  LogoCard(
+                                      onPressed: () {
+                                        Get.toNamed(Routes.signatureRoute);
+                                        print(
+                                            "###################:::::::${Get.height}");
+                                      },
+                                      imagePath:
+                                          "assets/images/file-storage 1.png",
+                                      CardText: "File Storage"),
+                                  LogoCard(
+                                    onPressed: () {
+                                      Get.toNamed(Routes.signatureRoute);
+                                    },
+                                    imagePath: "assets/images/drive 1.png",
+                                    CardText: "Google Drive",
+                                  ),
+                                  LogoCard(
+                                    onPressed: () {
+                                      Get.toNamed(Routes.signatureRoute);
+                                    },
+                                    imagePath: "assets/images/dropbox 1.png",
+                                    CardText: "DropBox",
+                                  ),
+                                  LogoCard(
+                                    onPressed: () {
+                                      Get.toNamed(Routes.signatureRoute);
+                                    },
+                                    imagePath:
+                                        "assets/images/personal-information 1.png",
+                                    CardText: "Personal Storage",
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                height: Get.height / 40,
+                              ),
                               // const SizedBox(
                               //   height: 25,
                               // ),
@@ -192,79 +181,69 @@ class HomePage extends StatelessWidget {
                               //     ],
                               //   ).paddingAll(10),
                               // ).marginSymmetric(horizontal: 20),
-                              SizedBox(
-                                height: Get.height * 0.022,
-                              ),
 
-                              Container(
-                                height: Get.height / 3.2,
-                                child: _.isLoading
-                                    ? Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            height: Get.height / 2.9,
-                                            child: Image.asset(
-                                                'assets/images/Artboard 12 1.png'),
-                                          ),
-                                          TextButton(
-                                              onPressed: () {},
-                                              child: Container(
-                                                width: Get.width / 2,
-                                                height: Get.height * 0.06,
-                                                decoration: ShapeDecoration(
-                                                    color: UIDataColors
-                                                        .commonColor,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20))),
-                                                child: Center(
-                                                  child: Text(
-                                                    'Create Task',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 16,
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
+                              _.isLoading
+                                  ? Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: Get.height / 4.3,
+                                          child: Image.asset(
+                                              'assets/images/Artboard 12 1.png'),
+                                        ),
+                                        TextButton(
+                                            onPressed: () {},
+                                            child: Container(
+                                              width: Get.width / 2.4,
+                                              height: Get.height * 0.06,
+                                              decoration: ShapeDecoration(
+                                                  color:
+                                                      UIDataColors.commonColor,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20))),
+                                              child: Center(
+                                                child: Text(
+                                                  'Create Task',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
-                                              ))
-                                        ],
-                                      )
-                                    : SingleChildScrollView(
-                                        child: Column(
-                                          children: [
-                                            ListView.builder(
-                                              shrinkWrap: true,
-                                              physics:
-                                                  NeverScrollableScrollPhysics(),
-                                              itemCount: 7,
-                                              itemBuilder: (c, i) {
-                                                return Listcard(
-                                                  title: 'Title',
-                                                  subtitle: 'subtitle',
-                                                  rSubtitle: '14 Jan, 2023',
-                                                );
-                                              },
-                                            ).marginOnly(left: 15, right: 15),
-                                          ],
-                                        ),
-                                      ),
-                              ),
+                                              ),
+                                            ))
+                                      ],
+                                    )
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: 7,
+                                      itemBuilder: (c, i) {
+                                        return Listcard(
+                                          title: 'Title',
+                                          subtitle: 'subtitle',
+                                          rSubtitle: '14 Jan, 2023',
+                                        );
+                                      },
+                                    ).marginOnly(left: 15, right: 15),
                             ],
                           ),
+                        ),
 
-                          ////////////////////////////////////////////tab2///////////////////
-                          Column(
+                        ////////////////////////////////////////////tab2///////////////////
+                        SingleChildScrollView(
+                          child: Column(
                             children: [
+                              SizedBox(
+                                height: Get.height / 40,
+                              ),
                               SingleChildScrollView(
                                 scrollDirection: Axis.horizontal,
                                 child: Row(
@@ -325,137 +304,69 @@ class HomePage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                              ).paddingOnly(
-                                top: 20,
-                                bottom: 20,
                               ),
                               SizedBox(
-                                height: 20,
+                                height: Get.height / 40,
                               ),
-                              // const SizedBox(
-                              //   height: 25,
-                              // ),
-                              // Container(
-                              //   decoration: BoxDecoration(
-                              //     border: Border(
-                              //       bottom: BorderSide(color: Colors.black),
-                              //     ),
-                              //   ),
-                              //   child: Row(
-                              //     children: [
-                              //       const Text(
-                              //         "All",
-                              //         style: TextStyle(
-                              //           fontSize: 20,
-                              //           color: Colors.black,
-                              //           fontWeight: FontWeight.normal,
-                              //         ),
-                              //       ),
-                              //       const Spacer(),
-                              //       GestureDetector(
-                              //         onTap: () =>
-                              //             {Get.toNamed(Routes.docListPage)},
-                              //         child: SizedBox(
-                              //             height: 30,
-                              //             width: 30,
-                              //             child: Icon(
-                              //               Icons.arrow_circle_right,
-                              //               color:
-                              //                   UIDataColors.kBlueButtonColor,
-                              //               size: 30,
-                              //             )),
-                              //       ),
-                              //       const SizedBox(
-                              //         width: 5,
-                              //       ),
-                              //       TextButton(
-                              //         onPressed: () {
-                              //           Get.toNamed(Routes.docListPage);
-                              //         },
-                              //         child: Text(
-                              //           "Go to Documents",
-                              //           style: TextStyle(
-                              //             fontSize: 10,
-                              //             color: Colors.black,
-                              //             fontWeight: FontWeight.normal,
-                              //           ),
-                              //         ),
-                              //       ).marginOnly(right: 20),
-                              //     ],
-                              //   ).paddingAll(10),
-                              // ).marginSymmetric(horizontal: 20),
-
-                              Container(
-                                height: Get.height / 2.24,
-                                child: _.isLoading
-                                    ? Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            height: Get.height / 2.9,
-                                            child: Image.asset(
-                                                'assets/images/Artboard 12 1.png'),
-                                          ),
-                                          TextButton(
-                                              onPressed: () {},
-                                              child: Container(
-                                                width: Get.width / 2,
-                                                height: Get.height * 0.06,
-                                                decoration: ShapeDecoration(
-                                                    color: UIDataColors
-                                                        .commonColor,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        20))),
-                                                child: Center(
-                                                  child: Text(
-                                                    'Create Task',
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 16,
-                                                      fontFamily: 'Inter',
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                    ),
+                              true
+                                  ? Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          height: Get.height / 4.3,
+                                          child: Image.asset(
+                                              'assets/images/Artboard 12 1.png'),
+                                        ),
+                                        TextButton(
+                                            onPressed: () {},
+                                            child: Container(
+                                              width: Get.width / 2.4,
+                                              height: Get.height * 0.06,
+                                              decoration: ShapeDecoration(
+                                                  color:
+                                                      UIDataColors.commonColor,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20))),
+                                              child: Center(
+                                                child: Text(
+                                                  'Create Task',
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16,
+                                                    fontFamily: 'Inter',
+                                                    fontWeight: FontWeight.w500,
                                                   ),
                                                 ),
-                                              ))
-                                        ],
-                                      )
-                                    : SingleChildScrollView(
-                                        child: Column(
-                                          children: [
-                                            ListView.builder(
-                                              shrinkWrap: true,
-                                              physics:
-                                                  NeverScrollableScrollPhysics(),
-                                              itemCount: 7,
-                                              itemBuilder: (c, i) {
-                                                return Listcard(
-                                                  title: 'Title',
-                                                  subtitle: 'subtitle',
-                                                  rSubtitle: '14 Jan, 2023',
-                                                );
-                                              },
-                                            ).marginOnly(left: 15, right: 15),
-                                          ],
-                                        ),
-                                      ),
-                              ),
+                                              ),
+                                            ))
+                                      ],
+                                    )
+                                  : ListView.builder(
+                                      shrinkWrap: true,
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: 7,
+                                      itemBuilder: (c, i) {
+                                        return Listcard(
+                                          title: 'Title',
+                                          subtitle: 'subtitle',
+                                          rSubtitle: '14 Jan, 2023',
+                                        );
+                                      },
+                                    ).marginOnly(left: 15, right: 15),
                             ],
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-        );
+                ],
+              );
       },
     );
   }

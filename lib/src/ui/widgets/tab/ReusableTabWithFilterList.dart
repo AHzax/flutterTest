@@ -74,7 +74,8 @@ class ReusableTabWithFilterList extends StatelessWidget {
     TabwithFilters tabController =
         Get.put(TabwithFilters(initialTab, tabLength, tabTap));
     return Container(
-      height: UIData.responsiveHeight / 1.24,
+      height: UIData.responsiveHeight / 1.2,
+      //  Get.height / 1.22,
       width: UIData.responsiveWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
