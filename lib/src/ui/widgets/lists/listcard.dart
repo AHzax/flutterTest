@@ -31,7 +31,7 @@ class Listcard extends StatelessWidget {
           border: Border(
             bottom: BorderSide(color: Colors.black),
           ),
-          color: Colors.white,
+          // color: Colors.white,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,7 +55,7 @@ class Listcard extends StatelessWidget {
                 Text(
                   "$belowSubtitle",
                   textAlign: TextAlign.start,
-                  style: TextStyle(fontSize: 12, color: Colors.black),
+                  style: TextStyle(fontSize: 12, color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black),
                 )
               ],
             ),
@@ -67,12 +67,12 @@ class Listcard extends StatelessWidget {
                 Text(
                   "$rTitle",
                   textAlign: TextAlign.start,
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                  style: TextStyle(fontSize: 14, color: Theme.of(context).brightness == Brightness.dark ? Colors.grey.shade300 : Colors.grey),
                 ),
                 Text(
                   "$rSubtitle",
                   textAlign: TextAlign.start,
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
+                  style: TextStyle(fontSize: 14, color: Theme.of(context).brightness == Brightness.dark ? Colors.grey.shade300 : Colors.grey),
                 ),
                 Text(
                   "$belowRSubtitle",

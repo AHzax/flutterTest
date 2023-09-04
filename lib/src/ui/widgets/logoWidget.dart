@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import "package:get/get.dart";
 
+import '../../utils/config/uidata.dart';
+
 class LogoCard extends StatelessWidget {
   const LogoCard(
       {required this.imagePath, this.CardText, required this.onPressed});
@@ -44,12 +46,16 @@ class LogoCard extends StatelessWidget {
             width: Get.width / 7.3,
             child: Text(
               CardText ?? "",
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? UIDataColors.whiteColor
+                    : Colors.grey.shade900,
+              ),
               textAlign: TextAlign.center,
               // overflow: TextOverflow.ellipsis,
               // maxLines: 2,
             ),
-          )
+          ).paddingOnly(top: 5),
         ],
       ),
     );

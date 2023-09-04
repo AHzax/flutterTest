@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:advance_pdf_viewer/advance_pdf_viewer.dart';
-import 'package:edge_detection/edge_detection.dart';
+import 'package:document_scanner_flutter/document_scanner_flutter.dart';
+// import 'package:edge_detection/edge_detection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -38,59 +39,59 @@ class NewDocumentController extends GetxController {
     super.onReady();
   }
 
-  // openPdfScanner(context) async {
-  //   var doc = await DocumentScannerFlutter.launchForPdf(context);
-  //   if (doc != null) {
-  //     scannedDocument = null;
+  openPdfScanner(context) async {
+    var doc = await DocumentScannerFlutter.launchForPdf(context);
+    if (doc != null) {
+      scannedDocument = null;
 
-  //     await Future.delayed(Duration(milliseconds: 100));
-  //     scannedDocumentFile = doc;
-  //     scannedDocument = await PDFDocument.fromFile(doc);
-  //     update();
-  //   }
-  //   pathPdf = '';
-  // }
+      await Future.delayed(Duration(milliseconds: 100));
+      scannedDocumentFile = doc;
+      scannedDocument = await PDFDocument.fromFile(doc);
+      update();
+    }
+    pathPdf = '';
+  }
 
 ////////////////////////////////////////
 
-  Future<void> getImageFromCamera() async {
-    bool isCameraGranted = await Permission.camera.request().isGranted;
-    if (!isCameraGranted) {
-      isCameraGranted =
-          await Permission.camera.request() == PermissionStatus.granted;
-    }
+  // Future<void> getImageFromCamera() async {
+  //   bool isCameraGranted = await Permission.camera.request().isGranted;
+  //   if (!isCameraGranted) {
+  //     isCameraGranted =
+  //         await Permission.camera.request() == PermissionStatus.granted;
+  //   }
 
-    if (!isCameraGranted) {
-      // Have not permission to camera
-      return;
-    }
+  //   if (!isCameraGranted) {
+  //     // Have not permission to camera
+  //     return;
+  //   }
 
-    // Generate filepath for saving
-    String imagePath = join((await getApplicationSupportDirectory()).path,
-        "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
+  //   // Generate filepath for saving
+  //   String imagePath = join((await getApplicationSupportDirectory()).path,
+  //       "${(DateTime.now().millisecondsSinceEpoch / 1000).round()}.jpeg");
 
-    try {
-      //Make sure to await the call to detectEdge.
-      bool success = await EdgeDetection.detectEdge(
-        imagePath,
-        canUseGallery: true,
-        androidScanTitle: 'Scanning', // use custom localizations for android
-        androidCropTitle: 'Crop',
-        androidCropBlackWhiteTitle: 'Black White',
-        androidCropReset: 'Reset',
-      );
-      print("success: $success");
-    } catch (e) {
-      print(e);
-    }
+  //   try {
+  //     //Make sure to await the call to detectEdge.
+  //     // bool success = await EdgeDetection.detectEdge(
+  //     //   imagePath,
+  //     //   canUseGallery: true,
+  //     //   androidScanTitle: 'Scanning', // use custom localizations for android
+  //     //   androidCropTitle: 'Crop',
+  //     //   androidCropBlackWhiteTitle: 'Black White',
+  //     //   androidCropReset: 'Reset',
+  //     // );
+  //     // print("success: $success");
+  //   } catch (e) {
+  //     print(e);
+  //   }
 
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
+  //   // If the widget was removed from the tree while the asynchronous platform
+  //   // message was in flight, we want to discard the reply rather than calling
+  //   // setState to update our non-existent appearance.
     
 
   
-  }
+  // }
 
   //////////////////////////////////////////
 

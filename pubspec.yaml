@@ -32,39 +32,43 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  dio: ^5.1.0
-  dio_cookie_manager: ^3.1.0
-  get: ^4.6.5
-  intl: 
-  path_provider: ^2.0.15
-  flutter_svg: ^1.0.3
   # flutter_cached_pdfview: ^0.4.1
-  syncfusion_flutter_pdfviewer: 
   
   # flutter_pdfview: ^1.0.1
-  font_awesome_flutter:
   # google_fonts:
-  cached_network_image: ^3.2.0
-  flutter_typeahead: ^3.2.5
   # sqflite: ^2.0.2+1
 
-  image_picker: ^0.8.4+4
-  signature: ^5.0.0
   
-  flutter_colorpicker: ^0.4.0
-  shared_preferences: ^2.1.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
   # edge_detection: ^1.1.1
-  mime: ^1.0.2
-  permission_handler: ^10.0.0
   
-  path: ^1.8.2
-  edge_detection: ^1.1.2
+  
   advance_pdf_viewer: ^2.0.1
+  cached_network_image: ^3.2.0
+  cupertino_icons: ^1.0.2
+  dio: ^5.1.0
+  dio_cookie_manager: ^3.1.0
+  document_scanner_flutter:
+    path: 'packages/document_scanner_flutter'
+  # edge_detection: ^1.1.2
+  flutter_colorpicker: ^0.4.0
+  flutter_svg: ^2.0.7
+  flutter_typeahead: ^3.2.5
+  font_awesome_flutter:
+  get: ^4.6.5
   google_mlkit_text_recognition: ^0.6.0
-
+  image_picker: ^0.8.4+4
+  intl: 
+  mime: ^1.0.2
+  path: ^1.8.2
+  path_provider: ^2.0.15
+  permission_handler: ^10.0.0
+  photo_view:
+    path: 'packages/photo_view'
+  shared_preferences: ^2.1.0
+  signature: ^5.0.0
+  syncfusion_flutter_pdfviewer: 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

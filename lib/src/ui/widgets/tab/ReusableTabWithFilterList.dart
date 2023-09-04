@@ -103,12 +103,18 @@ class ReusableTabWithFilterList extends StatelessWidget {
                                 onTap: tabTap,
                                 isScrollable: false,
                                 indicatorSize: TabBarIndicatorSize.tab,
-                                unselectedLabelColor: Colors.black,
-
+                                unselectedLabelColor:
+                                    Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? null
+                                        : UIDataColors.blackColor,
                                 unselectedLabelStyle: TextStyle(
                                     fontFamily: 'Roboto',
                                     fontWeight: FontWeight.w600,
-                                    color: Colors.black
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? null
+                                        : Colors.grey.shade600
                                     // fontSize: 20,
                                     ),
                                 labelColor: Colors.white,

@@ -24,7 +24,7 @@ import '../../ui/views/homepage.dart';
 import '../../ui/views/listDetails.dart';
 import '../../ui/views/loginPage.dart';
 import '../../ui/views/newdocument.dart';
-import '../../ui/views/Lists.dart';
+import '../../ui/views/lists.dart';
 import '../../ui/views/signUpPage.dart';
 import '../../ui/views/signaturepage.dart';
 import './app_routes.dart';
@@ -55,7 +55,7 @@ class AppPages {
       page: () => ListsPage(),
       binding: ListsBinding(),
     ),
-      GetPage(
+    GetPage(
       name: Routes.ListDetailRoute,
       page: () => ListsDetailPage(),
       binding: ListDetailBinding(),
@@ -70,12 +70,12 @@ class AppPages {
       page: () => CreateTaskPage(),
       binding: CreateTaskBinding(),
     ),
-      GetPage(
+    GetPage(
       name: Routes.CreateDocumentsRoute,
       page: () => CreateDocumentPage(),
       binding: CreateProjectBinding(),
     ),
-      GetPage(
+    GetPage(
       name: Routes.CreateCustomerRoute,
       page: () => CreateCustomerPage(),
       binding: CreateCustomerBinding(),
@@ -117,6 +117,12 @@ class AppPages {
       // middlewares: [
 
       // ],
+    ),
+
+    GetPage(
+      name: Routes.PdfViewRoute,
+      page: () => PdfViewPage(),
+      binding: NewDocumentBinding(),
     ),
     GetPage(
       name: Routes.settingsRoute,

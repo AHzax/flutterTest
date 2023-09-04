@@ -67,7 +67,9 @@ class CustomCard extends StatelessWidget {
                 // "12",
                 style: TextStyle(
                   fontSize: fontSize ?? 24,
-                  color: UIDataColors.whiteColor,
+                  color: Theme.of(context).brightness == Brightness.dark
+                          ? UIDataColors.whiteColor
+                          : Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
                 textScaleFactor: 1,
@@ -78,8 +80,10 @@ class CustomCard extends StatelessWidget {
               Text(
                 statusText,
                 // "In Progres \nProject",
-                style: const TextStyle(
-                  color: UIDataColors.whiteColor,
+                style: TextStyle(
+                  color: Theme.of(context).brightness == Brightness.dark
+                          ? UIDataColors.whiteColor
+                          : Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 10,
                 ),

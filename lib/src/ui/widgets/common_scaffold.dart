@@ -180,7 +180,7 @@ class CommonScaffold extends StatelessWidget {
                 ),
                 onPressed: () {
                   if (Get.currentRoute != Routes.settingsRoute) {
-                    Get.offAllNamed(Routes.settingsRoute);
+                    Get.toNamed(Routes.settingsRoute);
                   }
                 },
               ),
@@ -202,18 +202,20 @@ class CommonScaffold extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       // key: scaffoldKey,
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: showAppBar
           ? AppBar(
-              iconTheme: IconThemeData(color: UIDataColors.blackColor),
+              iconTheme: Theme.of(context).brightness == Brightness.dark ? null : IconThemeData(color: UIDataColors.blackColor),
               elevation: elevation,
               //   +
-              backgroundColor: UIDataColors.whiteColor,
+              backgroundColor: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black
+                          : UIDataColors.whiteColor,
               title: Center(
                 child: Text(
                   appTitle,
                   style: TextStyle(
-                    color: UIDataColors.blackColor,
+                    color: Theme.of(context).brightness == Brightness.dark ? null : UIDataColors.blackColor,
                     fontFamily: 'Inter',
                     fontWeight: FontWeight.w600,
                     fontSize: 14,
@@ -286,7 +288,9 @@ class CommonScaffold extends StatelessWidget {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: backGroundColor ?? UIDataColors.whiteColor,
+                  color: backGroundColor ?? (Theme.of(context).brightness == Brightness.dark
+                          ? Colors.grey.shade900
+                          : UIDataColors.whiteColor),
                 ),
                 width: (MediaQuery.of(context).size.width.ceil()).toDouble(),
                 height: (MediaQuery.of(context).size.height.ceil()).toDouble(),

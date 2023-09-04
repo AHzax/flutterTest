@@ -3,7 +3,6 @@ import 'package:docapp/src/utils/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 // import '../about_tile.dart';
 
 class CommonDrawer extends StatelessWidget {
@@ -77,6 +76,45 @@ class CommonDrawer extends StatelessWidget {
           ),
           ListTile(
             title: Text(
+              "Document List",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
+            ),
+            leading: Icon(
+              Icons.settings,
+              color: Color.fromARGB(255, 93, 93, 93),
+            ),
+            onTap: () {
+              Get.toNamed(Routes.docListPage);
+            },
+          ),
+          ListTile(
+            title: Text(
+              "Scan Document",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
+            ),
+            leading: Icon(
+              Icons.settings,
+              color: Color.fromARGB(255, 93, 93, 93),
+            ),
+            onTap: () {
+              Get.toNamed(Routes.newDocument);
+            },
+          ),
+          ListTile(
+            title: Text(
+              "Signature",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
+            ),
+            leading: Icon(
+              Icons.settings,
+              color: Color.fromARGB(255, 93, 93, 93),
+            ),
+            onTap: () {
+              Get.toNamed(Routes.signatureRoute);
+            },
+          ),
+          ListTile(
+            title: Text(
               "Setting",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18.0),
             ),
@@ -87,9 +125,6 @@ class CommonDrawer extends StatelessWidget {
             onTap: () {
               Get.toNamed(Routes.settingsRoute);
             },
-            // onTap: () {
-            //   c.changeTheme();
-            // },
           ),
           // Divider(),
           // MyAboutTile(),

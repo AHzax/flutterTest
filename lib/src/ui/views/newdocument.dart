@@ -1,4 +1,4 @@
-import 'package:docapp/src/ui/widgets/buttons/raised_button.dart';
+// import 'package:docapp/src/ui/widgets/buttons/raised_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -39,55 +39,31 @@ class NewDocument extends StatelessWidget {
                 ),
                 Center(
                   child: Builder(
-                      builder: (context) => InkWell(
-                            onTap: () async {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return Container(
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          ListTile(
-                                            leading:
-                                                Icon(Icons.camera_alt_sharp),
-                                            title: Text('Camera'),
-                                            onTap: () {
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                          ListTile(
-                                            leading: Icon(Icons.photo),
-                                            title: Text('Gallery'),
-                                            onTap: () {
-                                              Navigator.pop(context);
-                                            },
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  });
-                            },
-                            child: Container(
-                              height: Get.height / 2,
-                              width: Get.width / 1.2,
-                              decoration: BoxDecoration(
-                                  color: Colors.grey[400],
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: _.scannedDocumentFile != null
-                                  ? SfPdfViewer.file(
-                                      _.scannedDocumentFile!,
-                                      // initialZoomLevel: -1.0,
-                                    )
-                                  : Center(
-                                      child: Icon(
-                                        Icons.insert_drive_file_outlined,
-                                        color: Colors.white,
-                                        size: Get.height / 3,
-                                      ),
-                                    ),
-                            ),
-                          )),
+                    builder: (context) => InkWell(
+                      onTap: () async {
+                        _.openPdfScanner(context);
+                      },
+                      child: Container(
+                        height: Get.height / 2,
+                        width: Get.width / 1.2,
+                        decoration: BoxDecoration(
+                            color: Colors.grey[400],
+                            borderRadius: BorderRadius.circular(20)),
+                        child: _.scannedDocumentFile != null
+                            ? SfPdfViewer.file(
+                                _.scannedDocumentFile!,
+                                // initialZoomLevel: -1.0,
+                              )
+                            : Center(
+                                child: Icon(
+                                  Icons.insert_drive_file_outlined,
+                                  color: Colors.white,
+                                  size: Get.height / 3,
+                                ),
+                              ),
+                      ),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: Get.height * .04,
@@ -109,15 +85,17 @@ class NewDocument extends StatelessWidget {
                         // Get.toNamed(Routes.uploadedPage)
                         _.writepdf(_.scannedDocumentFile);
                         Get.snackbar(
-                          'Succussfull!',
-                          'Data Upload Successfully',
+                          'Success!',
+                          'File Saved Successfully',
                           duration: Duration(seconds: 2),
+                          snackPosition: SnackPosition.BOTTOM,
                         );
                       } else {
                         Get.snackbar(
                           'Enter Complete Data',
                           'Some data is missing!',
                           duration: Duration(seconds: 2),
+                          snackPosition: SnackPosition.BOTTOM,
                         );
                       }
                     },

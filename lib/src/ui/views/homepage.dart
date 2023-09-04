@@ -54,10 +54,13 @@ class HomePage extends StatelessWidget {
                           ),
                         ),
                         Tab(
-                          child: Text("Business",
-                              style: TextStyle(
-                                  // color: UIDataColors.whiteColor,
-                                  fontSize: 15)),
+                          child: Text(
+                            "Business",
+                            style: TextStyle(
+                              // color: UIDataColors.whiteColor,
+                              fontSize: 15,
+                            ),
+                          ),
                         ),
                       ],
                       tabBarView: [
@@ -95,30 +98,30 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   LogoCard(
                                       onPressed: () {
-                                        Get.toNamed(Routes.newDocument);
-                                        print(
-                                            "###################:::::::${Get.height}");
+                                        // Get.toNamed(Routes.newDocument);
+                                        // print(
+                                        //     "###################:::::::${Get.height}");
                                       },
                                       imagePath:
                                           "assets/images/file-storage 1.png",
                                       CardText: "File Storage"),
                                   LogoCard(
                                     onPressed: () {
-                                      Get.toNamed(Routes.signatureRoute);
+                                      // Get.toNamed(Routes.signatureRoute);
                                     },
                                     imagePath: "assets/images/drive 1.png",
                                     CardText: "Google Drive",
                                   ),
                                   LogoCard(
                                     onPressed: () {
-                                      Get.toNamed(Routes.signatureRoute);
+                                      // Get.toNamed(Routes.signatureRoute);
                                     },
                                     imagePath: "assets/images/dropbox 1.png",
                                     CardText: "DropBox",
                                   ),
                                   LogoCard(
                                     onPressed: () {
-                                      Get.toNamed(Routes.signatureRoute);
+                                      // Get.toNamed(Routes.signatureRoute);
                                     },
                                     imagePath:
                                         "assets/images/personal-information 1.png",
@@ -129,59 +132,6 @@ class HomePage extends StatelessWidget {
                               SizedBox(
                                 height: Get.height / 40,
                               ),
-                              // const SizedBox(
-                              //   height: 25,
-                              // ),
-                              // Container(
-                              //   decoration: BoxDecoration(
-                              //     border: Border(
-                              //       bottom: BorderSide(color: Colors.black),
-                              //     ),
-                              //   ),
-                              //   child: Row(
-                              //     children: [
-                              //       const Text(
-                              //         "All",
-                              //         style: TextStyle(
-                              //           fontSize: 20,
-                              //           color: Colors.black,
-                              //           fontWeight: FontWeight.normal,
-                              //         ),
-                              //       ),
-                              //       const Spacer(),
-                              //       GestureDetector(
-                              //         onTap: () =>
-                              //             {Get.toNamed(Routes.docListPage)},
-                              //         child: SizedBox(
-                              //             height: 30,
-                              //             width: 30,
-                              //             child: Icon(
-                              //               Icons.arrow_circle_right,
-                              //               color:
-                              //                   UIDataColors.kBlueButtonColor,
-                              //               size: 30,
-                              //             )),
-                              //       ),
-                              //       const SizedBox(
-                              //         width: 5,
-                              //       ),
-                              //       TextButton(
-                              //         onPressed: () {
-                              //           Get.toNamed(Routes.docListPage);
-                              //         },
-                              //         child: Text(
-                              //           "Go to Documents",
-                              //           style: TextStyle(
-                              //             fontSize: 10,
-                              //             color: Colors.black,
-                              //             fontWeight: FontWeight.normal,
-                              //           ),
-                              //         ),
-                              //       ).marginOnly(right: 20),
-                              //     ],
-                              //   ).paddingAll(10),
-                              // ).marginSymmetric(horizontal: 20),
-
                               _.isLoading
                                   ? Column(
                                       mainAxisAlignment:
@@ -192,7 +142,8 @@ class HomePage extends StatelessWidget {
                                         Container(
                                           height: Get.height / 4.3,
                                           child: Image.asset(
-                                              'assets/images/Artboard 12 1.png'),
+                                            'assets/images/Artboard 12 1.png',
+                                          ),
                                         ),
                                         TextButton(
                                             onPressed: () {},

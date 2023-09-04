@@ -8,7 +8,7 @@ import '../../utils/config/uidata.dart';
 import '../widgets/common_scaffold.dart';
 
 class CreateTaskPage extends StatelessWidget {
-  Widget bodyData() {
+  Widget bodyData(BuildContext context) {
     return GetBuilder<CreateTaskController>(builder: (_) {
       return SafeArea(
         minimum: EdgeInsets.only(right: 20, left: 20),
@@ -380,7 +380,9 @@ class CreateTaskPage extends StatelessWidget {
                     onPressed: () {},
                     label: "Cancel",
                     buttonCurve: 2.0,
-                    color: UIDataColors.whiteColor,
+                    color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.grey.shade900
+                          : UIDataColors.whiteColor,
                     textcolor: UIDataColors.fieldGreenColor,
                     showBorder: true,
                   )
@@ -454,7 +456,7 @@ class CreateTaskPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonScaffold(
-      bodyData: bodyData(),
+      bodyData: bodyData(context),
       showDrawer: true,
       enableHeader: false,
       headerName: false,
