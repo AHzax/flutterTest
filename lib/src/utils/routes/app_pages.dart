@@ -10,6 +10,7 @@ import '../../bindings/createCustomer_binding.dart';
 import '../../bindings/createProject_binding.dart';
 import '../../bindings/createTask_binding.dart';
 import '../../bindings/home_bindings.dart';
+import '../../bindings/listDetail_binding.dart';
 import '../../bindings/login_bindings.dart';
 import '../../bindings/lists_binding.dart';
 import '../../bindings/signaturepagebinding.dart';
@@ -20,6 +21,7 @@ import '../../ui/views/createProject.dart';
 import '../../ui/views/createTasks.dart';
 import '../../ui/views/docListPage.dart';
 import '../../ui/views/homepage.dart';
+import '../../ui/views/listDetails.dart';
 import '../../ui/views/loginPage.dart';
 import '../../ui/views/newdocument.dart';
 import '../../ui/views/Lists.dart';
@@ -52,6 +54,11 @@ class AppPages {
       name: Routes.ListsRoute,
       page: () => ListsPage(),
       binding: ListsBinding(),
+    ),
+      GetPage(
+      name: Routes.ListDetailRoute,
+      page: () => ListsDetailPage(),
+      binding: ListDetailBinding(),
     ),
     GetPage(
       name: Routes.CreateProjectRoute,

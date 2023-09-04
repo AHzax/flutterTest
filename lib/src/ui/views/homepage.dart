@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
                                 children: [
                                   LogoCard(
                                       onPressed: () {
-                                        Get.toNamed(Routes.signatureRoute);
+                                        Get.toNamed(Routes.newDocument);
                                         print(
                                             "###################:::::::${Get.height}");
                                       },
@@ -308,7 +308,7 @@ class HomePage extends StatelessWidget {
                               SizedBox(
                                 height: Get.height / 40,
                               ),
-                              true
+                              _.isLoading
                                   ? Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,

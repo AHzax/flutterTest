@@ -41,13 +41,13 @@ class LogoCard extends StatelessWidget {
             ).paddingAll(6),
           ),
           Container(
-            width: Get.width / 9.8,
+            width: Get.width / 7.3,
             child: Text(
               CardText ?? "",
               style: TextStyle(color: Colors.black),
               textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
+              // overflow: TextOverflow.ellipsis,
+              // maxLines: 2,
             ),
           )
         ],

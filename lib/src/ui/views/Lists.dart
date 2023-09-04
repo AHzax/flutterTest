@@ -36,6 +36,11 @@ class ListsPage extends StatelessWidget {
                             rTitle: _.getRTitle(_.docType, i),
                             rSubtitle: "${_.allPro[i]["status"] ?? ""}",
                             belowRSubtitle: "${_.getbelowRSub(_.docType, i)}",
+                            onPressed: () {
+                              Get.toNamed(Routes.ListDetailRoute, arguments: {
+                                "subtitle": _.allPro[i]["name"],"case":_.docType,
+                              });
+                            },
                           );
                         },
                       ).marginOnly(left: 15, right: 15),

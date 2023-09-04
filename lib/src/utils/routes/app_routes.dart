@@ -7,8 +7,11 @@ abstract class Routes {
 
   //error
   static const errorRoute = '/error';
-  //projects
+  //List
   static const ListsRoute = '/lists';
+  //ListDetail
+  static const ListDetailRoute = '/lists-detail';
+
   // login
   static const loginRoute = '/login';
 

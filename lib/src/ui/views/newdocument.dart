@@ -1,3 +1,4 @@
+import 'package:docapp/src/ui/widgets/buttons/raised_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -40,7 +41,32 @@ class NewDocument extends StatelessWidget {
                   child: Builder(
                       builder: (context) => InkWell(
                             onTap: () async {
-                              _.openPdfScanner(context);
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          ListTile(
+                                            leading:
+                                                Icon(Icons.camera_alt_sharp),
+                                            title: Text('Camera'),
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          ListTile(
+                                            leading: Icon(Icons.photo),
+                                            title: Text('Gallery'),
+                                            onTap: () {
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  });
                             },
                             child: Container(
                               height: Get.height / 2,

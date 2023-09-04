@@ -61,10 +61,9 @@ dependencies:
   permission_handler: ^10.0.0
   
   path: ^1.8.2
-  # document_scanner_flutter: ^0.2.7
+  edge_detection: ^1.1.2
   advance_pdf_viewer: ^2.0.1
   google_mlkit_text_recognition: ^0.6.0
-  # better_player: ^0.0.63
 
 
   # The following adds the Cupertino Icons font to your application.
