@@ -23,7 +23,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(
     SystemUiOverlayStyle(
       // systemNavigationBarColor: UIData.commonColor, // navigation bar color
-      statusBarColor: Colors.white, // status bar color
+      statusBarColor: Colors.transparent, // status bar color
     ),
   );
   WidgetsFlutterBinding.ensureInitialized();

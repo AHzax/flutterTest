@@ -49,16 +49,19 @@ class SettingsController extends GetxController {
   Color darkPrimaryColor = Color.fromARGB(255, 0, 0, 0);
 
   static ThemeData lightTheme = ThemeData(
+    
+      progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.black),
       primaryColor: ThemeData.light().scaffoldBackgroundColor,
       colorScheme: ColorScheme.light().copyWith(
         primary: settingsController.lightPrimaryColor,
       ));
 
   static ThemeData darkTheme = ThemeData(
+      progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.white),
       primaryColor: ThemeData.dark().scaffoldBackgroundColor,
       inputDecorationTheme: InputDecorationTheme(),
       bottomNavigationBarTheme:
-          BottomNavigationBarThemeData(backgroundColor: Colors.amber ),
+          BottomNavigationBarThemeData(backgroundColor: Colors.amber),
       colorScheme: ColorScheme.dark().copyWith(
         primary: settingsController.darkPrimaryColor,
       ));

@@ -61,6 +61,7 @@ class MyApp extends StatelessWidget {
           theme: SettingsController.lightTheme,
           darkTheme: SettingsController.darkTheme,
           themeMode: settings.getThemeMode,
+          
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
           onUnknownRoute: (RouteSettings rs) => MaterialPageRoute(
