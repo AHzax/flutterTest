@@ -59,9 +59,9 @@ class SignUpPage extends StatelessWidget {
                     child: Column(
                   children: [
                     CommonTextField(
-                      controller: _.username,
-                      hintText: "Username",
-                      labelText: "Username",
+                      controller: _.signupFirstname,
+                      hintText: "FirstName",
+                      labelText: "FirstName",
                       prefix: Icon(
                         Icons.person_outline,
                         size: 17,
@@ -69,9 +69,9 @@ class SignUpPage extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     CommonTextField(
-                      controller: _.username,
-                      hintText: "Email",
-                      labelText: "Email",
+                      controller: _.signupLastname,
+                      hintText: "LastName",
+                      labelText: "LastName",
                       prefix: const Icon(
                         Icons.email_outlined,
                         size: 17,
@@ -79,7 +79,17 @@ class SignUpPage extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     CommonTextField(
-                      controller: _.password,
+                      controller: _.signupEmail,
+                      hintText: "Email",
+                      labelText: "Email",
+                      prefix: Icon(
+                        Icons.lock_outline,
+                        size: 17,
+                      ), // isTextHidden :true,
+                    ),
+                    SizedBox(height: 20),
+                    CommonTextField(
+                      controller: _.signupPassword,
                       hintText: "Password",
                       labelText: "Password",
                       prefix: Icon(
@@ -95,6 +105,7 @@ class SignUpPage extends StatelessWidget {
                       buttonCurve: 9,
                       onPressed: () {
                         // Get.to(const DashboardScreen());
+                        _.signUp();
                       },
                       color: UIDataColors.commonColor,
                       showBorder: false,

@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,7 +23,7 @@ class CreateProjectController extends GetxController {
 
   //project
   TextEditingController nameController = TextEditingController();
-  TextEditingController ownerController = TextEditingController() ;
+  TextEditingController ownerController = TextEditingController();
   TextEditingController typeController = TextEditingController();
   TextEditingController departmentController = TextEditingController();
 
@@ -116,6 +114,9 @@ class CreateProjectController extends GetxController {
         type: RequestType.post,
       );
       await list.getAllProject();
+      await list.getProjData();
+      update();
+
       print('---- ${"hahahahahahahah ${deparmentValue}"}');
     } catch (e) {
       e as ErrorResponse;

@@ -6,11 +6,13 @@ import 'package:get/get.dart';
 import '../models/createCustomer.dart';
 import '../models/error.dart';
 import '../services/restclient.dart';
+import 'home_controller.dart';
 import 'lists_controller.dart';
 
 class CreateCustomerController extends GetxController {
   RestClient restClient = Get.find<RestClient>();
   ListsController list = Get.find<ListsController>();
+  HomeController homeController = Get.find<HomeController>();
 
   // Rx<DateTime> selectedDate1 = DateTime.now().obs;
   // Rx<DateTime> selectedDate2 = DateTime.now().obs;
@@ -64,7 +66,8 @@ class CreateCustomerController extends GetxController {
         data: customer.toJson(),
         type: RequestType.post,
       );
-      list.getAllProject();
+      await list.getAllProject();
+      await list.getCustomerData();
       print('---- ${"hahahahahahahah ${typeValue}"}');
     } catch (e) {
       e as ErrorResponse;
@@ -72,6 +75,10 @@ class CreateCustomerController extends GetxController {
       ////////////////////////////////
       nameController.clear();
     }
+    homeController.getCustomerCount();
+    homeController.getDocCount();
+    homeController.getTaskCount();
+    homeController.getProjCount();
   }
 
   //project

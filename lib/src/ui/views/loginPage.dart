@@ -32,6 +32,7 @@ class LoginPage extends StatelessWidget {
       builder: (_) {
         return SafeArea(
           child: SingleChildScrollView(
+            
             child: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(

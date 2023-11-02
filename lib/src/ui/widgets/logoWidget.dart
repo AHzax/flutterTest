@@ -4,9 +4,8 @@ import "package:get/get.dart";
 import '../../utils/config/uidata.dart';
 
 class LogoCard extends StatelessWidget {
-  const LogoCard(
-      {required this.imagePath, this.CardText, required this.onPressed});
-  final VoidCallback onPressed;
+  LogoCard({required this.imagePath, this.CardText, required this.onPressed});
+  VoidCallback onPressed;
   final String imagePath;
   final String? CardText;
 

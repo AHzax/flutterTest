@@ -11,9 +11,14 @@ abstract class Routes {
   static const ListsRoute = '/lists';
   //ListDetail
   static const ListDetailRoute = '/lists-detail';
+//files
+  static const FilesRoute = '/files';
 
   // login
   static const loginRoute = '/login';
+
+  //addImages
+  static const addImages = '/add-images';
 
   //createProject
   static const CreateProjectRoute = '/create-project';

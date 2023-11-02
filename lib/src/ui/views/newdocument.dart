@@ -1,7 +1,11 @@
 // import 'package:docapp/src/ui/widgets/buttons/raised_button.dart';
+import 'dart:io';
+
+import 'package:docapp/src/utils/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 import '../../controllers/NewDocumentController.dart';
 import '../widgets/common_scaffold.dart';
@@ -41,7 +45,8 @@ class NewDocument extends StatelessWidget {
                   child: Builder(
                     builder: (context) => InkWell(
                       onTap: () async {
-                        _.openPdfScanner(context);
+                        Get.toNamed(Routes.addImages);
+                        // _.openPdfScanner(context);
                       },
                       child: Container(
                         height: Get.height / 2,
@@ -49,11 +54,8 @@ class NewDocument extends StatelessWidget {
                         decoration: BoxDecoration(
                             color: Colors.grey[400],
                             borderRadius: BorderRadius.circular(20)),
-                        child: _.scannedDocumentFile != null
-                            ? SfPdfViewer.file(
-                                _.scannedDocumentFile!,
-                                // initialZoomLevel: -1.0,
-                              )
+                        child: _.pdfImage != null
+                            ? SfPdfViewer.file(File(_.pathPdf))
                             : Center(
                                 child: Icon(
                                   Icons.insert_drive_file_outlined,
@@ -72,18 +74,18 @@ class NewDocument extends StatelessWidget {
                   height: 50,
                   width: 50,
                   decoration: BoxDecoration(
-                      color: _.scannedDocumentFile != null
-                          ? Colors.green
-                          : Colors.grey[400],
+                      color:
+                          _.pdfImage != null ? Colors.green : Colors.grey[400],
                       borderRadius: BorderRadius.circular(100)),
                   child: IconButton(
                     color: Colors.white,
                     icon: Icon(Icons.arrow_forward),
                     onPressed: () {
-                      if (_.title.text.isNotEmpty &&
-                          _.scannedDocumentFile != null) {
+                      if (_.title.text.isNotEmpty && _.pdfImage != null) {
                         // Get.toNamed(Routes.uploadedPage)
-                        _.writepdf(_.scannedDocumentFile);
+                        _.writepdf(File(_.pathPdf));
+                            Get.toNamed(Routes.docListPage);
+
                         Get.snackbar(
                           'Success!',
                           'File Saved Successfully',

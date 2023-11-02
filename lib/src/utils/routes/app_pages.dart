@@ -16,6 +16,8 @@ import '../../bindings/lists_binding.dart';
 import '../../bindings/signaturepagebinding.dart';
 import '../../middlewares/auth.dart';
 import '../../ui/views/Lists.dart';
+import '../../ui/views/ShowFiles.dart';
+import '../../ui/views/addImages.dart';
 import '../../ui/views/createCustomer.dart';
 import '../../ui/views/createDocument.dart';
 import '../../ui/views/createProject.dart';
@@ -65,10 +67,16 @@ class AppPages {
       page: () => CreateProjectPage(),
       binding: CreateProjectBinding(),
     ),
+
     GetPage(
       name: Routes.CreatetTaskRoute,
       page: () => CreateTaskPage(),
       binding: CreateTaskBinding(),
+    ),
+     GetPage(
+      name: Routes.FilesRoute,
+      page: () => ShowFilesPage(),
+      binding: HomeBinding(),
     ),
     GetPage(
       name: Routes.CreateDocumentsRoute,
@@ -93,8 +101,8 @@ class AppPages {
     ),
 
     GetPage(
-      name: Routes.docListPage,
-      page: () => DocListPage(),
+      name: Routes.addImages,
+      page: () => AddImagePage(),
       binding: NewDocumentBinding(),
     ),
 

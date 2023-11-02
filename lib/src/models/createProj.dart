@@ -8,6 +8,7 @@ class Project {
   final DateTime? startDate;
 
   final String? priority;
+  final String? owner;
 
   final DateTime? endDate;
 
@@ -19,19 +20,17 @@ class Project {
     this.startDate,
     this.endDate,
     this.priority,
+    this.owner,
   });
 
-
-
- factory Project.fromJson(Map<String, dynamic> data) {
+  factory Project.fromJson(Map<String, dynamic> data) {
     return Project(
-      name: data['name'],
+      name: data['project_name'],
       type: data['project_type'],
       status: data['status'],
       department: data['department'],
-      priority: data["priority"],
-      startDate: data["expected_start_date"],
-      endDate: data["expected_end_date"],
+      owner: data["owner"],
+      endDate: DateTime.parse(data["expected_end_date"]),
     );
   }
 
@@ -64,6 +63,4 @@ class Project {
       "priority": priority,
     };
   }
-  
- 
 }

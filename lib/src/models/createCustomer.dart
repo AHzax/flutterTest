@@ -1,8 +1,8 @@
 class Customer {
-  final String name;
-  final String type;
+  final String? name;
+  final String? type;
   final String? group;
-  final String territory;
+  final String? territory;
 
   Customer({
     required this.name,
@@ -11,9 +11,9 @@ class Customer {
     required this.territory,
   });
 
-  Customer fromJson(Map<String, dynamic> data) {
+  factory Customer.fromJson(Map<String, dynamic> data) {
     return Customer(
-      name: data['name'],
+      name: data['customer_name'],
       type: data['customer_type'],
       group: data['customer_group'],
       territory: data['territory'],

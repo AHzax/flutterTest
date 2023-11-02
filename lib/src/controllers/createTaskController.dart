@@ -1,8 +1,12 @@
+import 'dart:ffi';
+
+import 'package:docapp/src/utils/helpers/frappeHelpers.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
 // import '../models/createProj.dart';
+import '../models/createProj.dart';
 import '../models/createTask.dart';
 import '../models/error.dart';
 // import '../models/getProj.dart';
@@ -12,8 +16,11 @@ import 'lists_controller.dart';
 class CreateTaskController extends GetxController {
   RestClient restClient = Get.find<RestClient>();
   ListsController list = Get.find<ListsController>();
+  final FrappeHelper frappeHelper = FrappeHelper();
 
-  List<String> projectNames = [];
+  List<Project> proj = [];
+
+  List<dynamic> projectNames = [];
 
   List<Map<String, dynamic>> allPro = [];
 
@@ -43,19 +50,46 @@ class CreateTaskController extends GetxController {
     super.onInit();
   }
 
-  getProj() async {
+  Future getProj() async {
     var res = await restClient.sendRequest("/resource/Project",
         type: RequestType.get);
     if (res["data"] != null) {
       if (res["data"].length > 0) {
-       List<String> projectNames =
+        projectNames =
             res["data"].map((project) => project['name'] as String).toList();
-        return projectNames;
+        print("#####%%%%%%${res["data"]}");
+
         // List<dynamic> names = item!.map((item) => item).toList();
       }
     }
-    print("##################::::::${allPro}");
+    update();
+    print("##################::::::${projectNames}");
   }
+
+  ////////////////////////////////////////
+  // Future<void> getProjects() async {
+  //   await frappeHelper.getItem(
+  //     doctype: "Project",
+  //     fields: '["name"]',
+  //     filters: [
+  //       // ["Item", "item_code", "not like", " %service%"],
+  //       // ["Item", "disabled", "in", "no"]
+  //     ],
+  //   );
+  //   // print(frappeHelper.response);
+  //   // List<Item> res = [];
+  //   // print(Item());
+  //   frappeHelper.response.forEach((e) {
+  //     print('hahahahahha${e['name']}');
+  //     projectNames.addAll(e["name"]);
+  //   });
+  //   // frappeHelper.convertToItemList();
+  //   print("###############################$projectNames");
+  //   // isLoading = false;
+  //   update();
+  // }
+
+  ////////////////////////////////////////////////
 
   // Future<void> openDatePicker(BuildContext context) async {
   //   final DateTime? picked = await showDatePicker(
@@ -137,6 +171,7 @@ class CreateTaskController extends GetxController {
         type: RequestType.post,
       );
       await list.getAllProject();
+      await list.getTaskData(false);
       print('---- ${"hahahahahahahah ${subjectController}"}');
     } catch (e) {
       e as ErrorResponse;

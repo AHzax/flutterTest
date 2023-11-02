@@ -1,8 +1,8 @@
 import 'package:intl/intl.dart';
 
 class Task {
-  final String subject;
-  final String type;
+  final String? subject;
+  final String? type;
   final String? status;
   final String? project;
   final String? priority;
@@ -23,22 +23,20 @@ class Task {
     this.name,
   });
 
-  Task fromJson(Map<String, dynamic> data) {
+  factory Task.fromJson(Map<String, dynamic> data) {
     return Task(
-      name: data['name'],
       subject: data['subject'],
       type: data['type'],
       status: data['status'],
       project: data['project'],
       priority: data["priority"],
-      startDate: data["exp_start_date"],
-      endDate: data["exp_end_date"],
+      endDate: DateTime.parse(data["exp_end_date"]),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      "name":name,
+      "name": name,
       'subject': subject,
       'type': type,
       'status': status,
@@ -51,7 +49,7 @@ class Task {
 
   Map<String, dynamic> toApiJson() {
     return {
-      "name":name,
+      "name": name,
       'subject': subject,
       'type': type,
       'status': status,

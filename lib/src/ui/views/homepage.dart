@@ -97,14 +97,14 @@ class HomePage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   LogoCard(
-                                      onPressed: () {
-                                        // Get.toNamed(Routes.newDocument);
-                                        // print(
-                                        //     "###################:::::::${Get.height}");
-                                      },
-                                      imagePath:
-                                          "assets/images/file-storage 1.png",
-                                      CardText: "File Storage"),
+                                    onPressed: () {
+
+                                      _.openAndLoadFiles();
+                                    },
+                                    imagePath:
+                                        "assets/images/file-storage 1.png",
+                                    CardText: "File Storage",
+                                  ),
                                   LogoCard(
                                     onPressed: () {
                                       // Get.toNamed(Routes.signatureRoute);
@@ -206,7 +206,7 @@ class HomePage extends StatelessWidget {
                                       },
                                       statusText: "Projects",
                                       // ${_.data['data'][0]['name']}
-                                      valueText: '12',
+                                      valueText: _.projCount.toString(),
                                       icon: const Icon(
                                           Icons.document_scanner_outlined,
                                           color: Colors.white),
@@ -219,7 +219,7 @@ class HomePage extends StatelessWidget {
                                             arguments: {"docType": "task"});
                                         // Get.toNamed(Routes.signatureRoute);
                                       },
-                                      valueText: '12',
+                                      valueText: _.taskCount.toString(),
                                       icon: Icon(
                                           Icons.document_scanner_outlined,
                                           color: Colors.white),
@@ -227,7 +227,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                     CustomCard(
                                       statusText: 'Documents',
-                                      valueText: '12',
+                                      valueText: _.docCount.toString(),
                                       onPressed: () {
                                         Get.toNamed(Routes.ListsRoute,
                                             arguments: {
@@ -242,7 +242,7 @@ class HomePage extends StatelessWidget {
                                     ),
                                     CustomCard(
                                       statusText: 'Customers',
-                                      valueText: '12',
+                                      valueText: _.customerCount.toString(),
                                       onPressed: () {
                                         Get.toNamed(Routes.ListsRoute,
                                             arguments: {"docType": "customer"});
@@ -301,12 +301,22 @@ class HomePage extends StatelessWidget {
                                       shrinkWrap: true,
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
                                       physics: NeverScrollableScrollPhysics(),
-                                      itemCount: 7,
+                                      itemCount: _.task!.length,
                                       itemBuilder: (c, i) {
                                         return Listcard(
-                                          title: 'Title',
-                                          subtitle: 'subtitle',
-                                          rSubtitle: '14 Jan, 2023',
+                                          title: _.task![i].subject ?? '',
+                                          subtitle: _.task![i].priority,
+                                          belowSubtitle: (_.task![i].endDate
+                                                      .toString()
+                                                      .length >
+                                                  11)
+                                              ? _.task![i].endDate
+                                                  .toString()
+                                                  .substring(0, 11)
+                                              : _.task![i].endDate.toString(),
+                                          rTitle: _.task![i].status,
+                                          rSubtitle: _.task![i].type,
+                                          belowRSubtitle: _.task![i].project,
                                         );
                                       },
                                     ).marginOnly(left: 15, right: 15),

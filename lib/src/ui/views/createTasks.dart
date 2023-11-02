@@ -83,7 +83,7 @@ class CreateTaskPage extends StatelessWidget {
                         ),
                         iconEnabledColor: UIDataColors.fieldGreenColor,
                         items: _.projectNames
-                            .map<DropdownMenuItem<String>>((String value) {
+                            .map<DropdownMenuItem<String>>((dynamic value) {
                           return DropdownMenuItem<String>(
                             value: value,
                             child: Text(value),
@@ -381,8 +381,8 @@ class CreateTaskPage extends StatelessWidget {
                     label: "Cancel",
                     buttonCurve: 2.0,
                     color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.grey.shade900
-                          : UIDataColors.whiteColor,
+                        ? Colors.grey.shade900
+                        : UIDataColors.whiteColor,
                     textcolor: UIDataColors.fieldGreenColor,
                     showBorder: true,
                   )

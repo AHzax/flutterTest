@@ -30,15 +30,18 @@ class ListsPage extends StatelessWidget {
 ////not only project its selecting the mode: i.e project, tasks , docs, customers and changing list accordingly
 
                           return Listcard(
-                            title: "${_.allPro[i]["name"]}",
+                            title: _.getTitle(docType, i),
+
+                            // title: "${_.resItems['message']['values'][i][0]}",
                             subtitle: _.getSubTitle(_.docType, i),
                             belowSubtitle: " ${_.getBelowSub(_.docType, i)}",
                             rTitle: _.getRTitle(_.docType, i),
-                            rSubtitle: "${_.allPro[i]["status"] ?? ""}",
+                            rSubtitle: _.getRSubtitle(_.docType, i),
                             belowRSubtitle: "${_.getbelowRSub(_.docType, i)}",
                             onPressed: () {
                               Get.toNamed(Routes.ListDetailRoute, arguments: {
-                                "subtitle": _.allPro[i]["name"],"case":_.docType,
+                                "subtitle": _.allPro[i]["name"],
+                                "case": _.docType,
                               });
                             },
                           );
@@ -74,7 +77,7 @@ class ListsPage extends StatelessWidget {
       // floatingIcon: Icons.add,
       showAppBar: true,
       showBottomNav: true,
-      appTitle: "Lists",
+      appTitle: "${docType.toUpperCase()}",
 
       actionFirstIcon: Icons.control_point_duplicate_sharp,
     );

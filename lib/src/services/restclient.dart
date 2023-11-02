@@ -2,6 +2,7 @@ import 'dart:async';
 // import 'dart:convert';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:docapp/src/models/register.dart';
 import 'package:get/state_manager.dart';
 
 // configs
@@ -20,7 +21,6 @@ enum RequestType { post, get, put, patch, delete }
 
 class RestClient extends GetxService {
   final bool debug = true;
-  // final AuthService authService = Get.find<AuthService>();
   int retries = 0;
 
   Future<RestClient> init() async {
@@ -52,6 +52,13 @@ class RestClient extends GetxService {
       );
     }
   }
+
+////////////////////////////////////
+
+
+  
+  
+////////////////////////////////
 
   Future<dynamic> sendRequest(
     String endpoint, {
