@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "433181507594",
+    "project_id": "flutterprac-74fb9",
+    "storage_bucket": "flutterprac-74fb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433181507594:android:f3ded873603679e5839ff3",
+        "android_client_info": {
+          "package_name": "com.example.docapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe93jq_UxDfc2NYraBO-dDEcoAO-47Xjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

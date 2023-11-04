@@ -4,6 +4,9 @@ import 'package:docapp/src/models/error.dart';
 import 'package:docapp/src/models/login.dart';
 import 'package:docapp/src/models/register.dart';
 import 'package:docapp/src/services/restclient.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,43 +18,48 @@ class AuthService extends GetxService {
   String? loggedInUser;
   late SharedPreferences prefs;
 
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
   Future<AuthService> init() async {
     prefs = await SharedPreferences.getInstance();
     isLoggedIn();
     return this;
   }
 
-  Future<bool> login(String username, String password) async {
-    LoginRequest req = LoginRequest.fromJson({
-      "usr": username,
-      "pwd": password,
-      "device": "mobile",
-    });
-    try {
-      LoginResponse res = await restClient.login(req);
+  // Future<bool> login(String username, String password) async {
+  //   LoginRequest req = LoginRequest.fromJson({
+  //     "usr": username,
+  //     "pwd": password,
+  //     "device": "mobile",
+  //   });
+  //   try {
+  //     LoginResponse res = await restClient.login(req);
 
-      if (res.userId != null) {
-        loggedInUser = res.userId;
-        print('---- $loggedInUser');
-        await prefs.setString("loggedInUser", loggedInUser!);
+  //     if (res.userId != null) {
+  //       loggedInUser = res.userId;
+  //       print('---- $loggedInUser');
+  //       await prefs.setString("loggedInUser", loggedInUser!);
 
-        return true;
-      }
-    } catch (e) {
-      e as ErrorResponse;
-      print("ERRRRRRRRRRRRROOORRR${e.statusMessage}");
-    }
+  //       return true;
+  //     }
+  //   } catch (e) {
+  //     e as ErrorResponse;
+  //     print("ERRRRRRRRRRRRROOORRR${e.statusMessage}");
+  //   }
 
-    loggedInUser = null;
-    return false;
-  }
+  //   loggedInUser = null;
+  //   return false;
+  // }
 
   bool isLoggedIn() {
     String? loggedInStatus = prefs.getString('loggedInUser');
-    print("##################################3: ${loggedInStatus}");
-
+    // loggedInUser != null
+    //     ? myloggedInStatus = loggedInUser
+    //     : myloggedInStatus = loggedInStatus;
     myloggedInStatus = loggedInStatus;
-    return myloggedInStatus != null;
+    print(
+        "##################################3444444444444: ${myloggedInStatus}");
+    return myloggedInStatus != null ? true : false;
   }
 
   void logout() {
@@ -61,20 +69,66 @@ class AuthService extends GetxService {
 
   //////////////////////////////////////////////////
 
-  Future<bool> register(
-      String firstName, String lastName, String email, String password) async {
-    final response = await restClient.sendRequest(
-      '/method/signup',
-      data: {
-        "first_name": firstName,
-        "last_name": lastName,
-        "email": email,
-        "password": password,
-      },
-      type: RequestType.post,
-    );
+  Future<User?> signUpWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      UserCredential credential = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return credential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        Fluttertoast.showToast(
+            msg: "The email address is already in use.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blue,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      } else {
+        Fluttertoast.showToast(
+            msg: "An error occurred: ${e.code}",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blue,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+    }
+    return null;
+  }
 
-    return true;
+  Future<User?> signInWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      UserCredential credential = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      // loggedInUser = email.toString();
+      // await prefs.setString("loggedInUser", loggedInUser!);
+      return credential.user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+        Fluttertoast.showToast(
+            msg: "Invalid email or password.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blue,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      } else {
+        Fluttertoast.showToast(
+            msg: "An error occurred: ${e.code}",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.blue,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+    }
+    return null;
   }
 
   // Future<void> signup() async {}

@@ -73,7 +73,7 @@ class LoginPage extends StatelessWidget {
                         ),
                         const SizedBox(height: 20),
                         CommonTextField(
-                          controller: _.password,
+                          controller: _.pass,
                           hintText: "Password",
                           labelText: "Password",
                           prefix: const Icon(
@@ -120,7 +120,7 @@ class LoginPage extends StatelessWidget {
                                   : ReusableButton(
                                       buttonCurve: 30.0,
                                       onPressed: () {
-                                        _.login();
+                                        _.signIn();
                                       },
                                       label: 'Login',
                                       color: UIDataColors.commonColor,

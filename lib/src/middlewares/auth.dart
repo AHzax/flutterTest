@@ -9,8 +9,8 @@ class AuthMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     final authService = Get.find<AuthService>();
-    return authService.isLoggedIn()
+   return authService.loggedInUser != null
         ? null
-        : const RouteSettings(name: Routes.loginRoute);
+        : RouteSettings(name: Routes.loginRoute);
   }
 }

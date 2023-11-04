@@ -1,4 +1,6 @@
+import 'package:docapp/firebase_options.dart';
 import 'package:docapp/src/services/auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 // import 'package:docapp/src/ui/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,7 +36,9 @@ void main() async {
 }
 
 Future<void> initializeServices() async {
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   SettingsService settings = SettingsService();
   await Get.putAsync(() => settings.init());
