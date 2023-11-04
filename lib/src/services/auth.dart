@@ -69,12 +69,13 @@ class AuthService extends GetxService {
 
   //////////////////////////////////////////////////
 
-  Future<User?> signUpWithEmailAndPassword(
-      String email, String password) async {
+  Future<void> signUpWithEmailAndPassword(String email, String password) async {
     try {
-      UserCredential credential = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      return credential.user;
+      await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      // return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
         Fluttertoast.showToast(
@@ -96,17 +97,91 @@ class AuthService extends GetxService {
             fontSize: 16.0);
       }
     }
-    return null;
   }
 
-  Future<User?> signInWithEmailAndPassword(
-      String email, String password) async {
+  Future loginUser(String username, String password) async {
+    if (username.isNotEmpty) {
+      try {
+        UserCredential userCredential =
+            await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: username,
+          password: password,
+        );
+        User user = userCredential.user!;
+        loggedInUser = user.email;
+        Get.offAllNamed(Routes.homeRoute);
+      } on FirebaseAuthException catch (e) {
+        // print(e);
+        if (e.code == 'user-not-found') {
+          Get.snackbar(
+            "",
+            "",
+            titleText: Text(
+              'Error!',
+              style: TextStyle(
+                fontFamily: 'font',
+                fontWeight: FontWeight.bold,
+                letterSpacing: 5,
+              ),
+            ),
+            messageText: Text(
+              'USER NOT FOUND',
+              style: TextStyle(
+                fontFamily: 'font',
+                fontWeight: FontWeight.bold,
+                letterSpacing: 3,
+              ),
+            ),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            margin: const EdgeInsets.all(10),
+          );
+        } else if (e.code == 'wrong-password') {
+          Get.snackbar(
+            "",
+            "",
+            titleText: Text(
+              'Error!',
+              style: TextStyle(
+                fontFamily: 'font',
+                fontWeight: FontWeight.bold,
+                letterSpacing: 5,
+              ),
+            ),
+            messageText: Text(
+              'WRONG PASSWORD',
+              style: TextStyle(
+                fontFamily: 'font',
+                fontWeight: FontWeight.bold,
+                letterSpacing: 3,
+              ),
+            ),
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+            margin: const EdgeInsets.all(10),
+          );
+        }
+      }
+    } else {
+      Get.snackbar(
+        "Error",
+        "Please Fill Both Email and Password",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+        margin: const EdgeInsets.all(10),
+      );
+    }
+  }
+
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
     try {
-      UserCredential credential = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
       // loggedInUser = email.toString();
       // await prefs.setString("loggedInUser", loggedInUser!);
-      return credential.user;
+      // return credential.user;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
         Fluttertoast.showToast(
@@ -128,7 +203,7 @@ class AuthService extends GetxService {
             fontSize: 16.0);
       }
     }
-    return null;
+    // return null;
   }
 
   // Future<void> signup() async {}

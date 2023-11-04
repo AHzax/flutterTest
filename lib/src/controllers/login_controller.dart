@@ -34,30 +34,7 @@ class LoginController extends GetxController {
     String email = username.text;
     String password = pass.text;
 
-    User? user = await auth.signInWithEmailAndPassword(email, password);
-
-    if (user != null) {
-      auth.prefs.setBool("loggedInUser", user.emailVerified);
-      print("444444444444444444444444444444::::::::::${user.emailVerified}");
-      Fluttertoast.showToast(
-          msg: "User is successfully signed in",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.blue,
-          textColor: Colors.white,
-          fontSize: 16.0);
-      Get.toNamed(Routes.homeRoute);
-    } else {
-      Fluttertoast.showToast(
-          msg: "some error occured",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.blue,
-          textColor: Colors.white,
-          fontSize: 16.0);
-    }
+    await auth.loginUser(email, password);
   }
 
   void signUp() async {
