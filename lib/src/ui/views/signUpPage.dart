@@ -105,7 +105,7 @@ class SignUpPage extends StatelessWidget {
                       buttonCurve: 9,
                       onPressed: () {
                         // Get.to(const DashboardScreen());
-                        _.signUp();
+                        _.signUpUser();
                       },
                       color: UIDataColors.commonColor,
                       showBorder: false,
