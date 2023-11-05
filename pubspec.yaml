@@ -54,7 +54,7 @@ dependencies:
   dio: ^5.1.0
   dio_cookie_manager: ^3.1.0
   document_scanner_flutter:
-    path: 'packages/document_scanner_flutter'
+    # path: 'packages/document_scanner_flutter'
   # edge_detection: ^1.1.2
   flutter_colorpicker: ^0.4.0
   flutter_svg: ^2.0.7
@@ -70,7 +70,7 @@ dependencies:
   path_provider: ^2.0.15
   permission_handler: ^10.0.0
   photo_view:
-    path: 'packages/photo_view'
+    # path: 'packages/photo_view'
   shared_preferences: ^2.1.0
   signature: ^5.0.0
   syncfusion_flutter_pdfviewer: 
